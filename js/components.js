@@ -98,16 +98,6 @@
             <img src="${base}images/instagram-logo.png" alt="" aria-hidden="true">
             <span class="footer__social-text">Instagram</span>
           </a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"
-             class="footer__social-link" aria-label="Facebook" role="listitem">
-            <img src="${base}images/logo-facebook.png" alt="" aria-hidden="true">
-            <span class="footer__social-text">Facebook</span>
-          </a>
-          <a href="https://x.com/" target="_blank" rel="noopener noreferrer"
-             class="footer__social-link" aria-label="X" role="listitem">
-            <img src="${base}images/X.png" alt="" aria-hidden="true">
-            <span class="footer__social-text">X</span>
-          </a>
           <a href="https://wa.me/573016501515" target="_blank" rel="noopener noreferrer"
              class="footer__social-link" aria-label="WhatsApp" role="listitem">
             <img src="${base}images/whatsapp-logo.png" alt="" aria-hidden="true">
@@ -146,7 +136,12 @@
       <div>
         <h3 class="footer__heading">Contacto</h3>
         <div class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true">DIR</span>
+          <span class="footer__contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+              <path d="M12 21s7-5.33 7-11a7 7 0 1 0-14 0c0 5.67 7 11 7 11Z"></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
+            </svg>
+          </span>
           <p class="footer__contact-text">
             Cl. 31 #52-20, Progreso<br>
             Cartagena de Indias, Bolívar<br>
@@ -154,7 +149,12 @@
           </p>
         </div>
         <div class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true">HOR</span>
+          <span class="footer__contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3 2"></path>
+            </svg>
+          </span>
           <p class="footer__contact-text">
             Lunes – Sábado: 8:00 am – 6:00 pm<br>
             Domingos: Previa cita
@@ -170,7 +170,8 @@
       </p>
       <ul class="footer__bottom-links" role="list">
         <li><a href="${base}contacto.html" class="footer__bottom-link">Contacto</a></li>
-        <li><a href="${base}blog/index.html" class="footer__bottom-link">Blog</a></li>
+        <li><a href="${base}privacidad.html" class="footer__bottom-link">Privacidad</a></li>
+        <li><a href="${base}terminos.html" class="footer__bottom-link">Términos</a></li>
         <li><a href="${base}sitemap.xml" class="footer__bottom-link">Sitemap</a></li>
       </ul>
     </div>

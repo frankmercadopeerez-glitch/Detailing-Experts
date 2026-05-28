@@ -3,7 +3,7 @@
 
   <!-- Core pages -->
   <url>
-    <loc>https://detailingexperts.com/index.html</loc>
+    <loc>https://detailingexperts.com/</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
@@ -19,6 +19,18 @@
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://detailingexperts.com/privacidad.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://detailingexperts.com/terminos.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <!-- Services -->
