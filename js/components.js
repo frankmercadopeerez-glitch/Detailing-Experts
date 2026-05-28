@@ -195,20 +195,17 @@
     if (footerSlot) footerSlot.outerHTML = footerHTML + waFloat;
 
     // Mark active nav link
-    const path = window.location.pathname;
-    const inServicios = path.includes("/servicios/");
-    const inBlog = path.includes("/blog/");
+    const path = window.location.pathname.toLowerCase();
+    const segments = path.split("/").filter(Boolean);
+    const inServicios = segments.includes("servicios");
+    const inBlog = segments.includes("blog");
     const isHomePath =
-      path === "/" ||
-      path.endsWith("/index.html") ||
-      path.endsWith("index.html");
+      segments.length === 0 ||
+      (segments.length === 1 && segments[0] === "index.html");
     document.querySelectorAll("[data-page]").forEach((el) => {
       const page = el.dataset.page;
       const active =
-        (page === "home" &&
-          isHomePath &&
-          !inServicios &&
-          !inBlog) ||
+        (page === "home" && isHomePath && !inServicios && !inBlog) ||
         (page === "servicios" && inServicios) ||
         (page === "blog" && inBlog) ||
         (page === "nosotros" && path.includes("nosotros")) ||
