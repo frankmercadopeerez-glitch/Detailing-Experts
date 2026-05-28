@@ -633,6 +633,16 @@ p {
   letter-spacing: -0.03em;
 }
 
+.nav__logo-mark-img {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: var(--glow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  flex-shrink: 0;
+}
+
 .nav__logo-text {
   display: flex;
   flex-direction: column;

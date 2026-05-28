@@ -33,7 +33,7 @@
   <div class="nav__container">
 
     <a href="${base}index.html" class="nav__logo" aria-label="Detailing Experts – Inicio">
-      <div class="nav__logo-mark" aria-hidden="true">EX</div>
+      <img src="${base}favicon.svg" alt="" aria-hidden="true" class="nav__logo-mark-img">
       <div class="nav__logo-text">
         <span class="nav__logo-name">Detailing Experts</span>
         <span class="nav__logo-tagline">Cartagena · Premium</span>
