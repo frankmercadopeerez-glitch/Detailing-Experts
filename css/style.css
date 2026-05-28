@@ -2138,6 +2138,9 @@ select.form-control {
   .nav__mobile-link {
     font-size: clamp(1.9rem, 8vw, 2.6rem);
   }
+  .map-section {
+    height: 300px;
+  }
   .stat-item:nth-child(1)::after {
     display: none;
   }
