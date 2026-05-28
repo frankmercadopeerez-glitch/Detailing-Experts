@@ -196,13 +196,21 @@
 
     // Mark active nav link
     const path = window.location.pathname;
+    const inServicios = path.includes("/servicios/");
+    const inBlog = path.includes("/blog/");
+    const isHomePath =
+      path === "/" ||
+      path.endsWith("/index.html") ||
+      path.endsWith("index.html");
     document.querySelectorAll("[data-page]").forEach((el) => {
       const page = el.dataset.page;
       const active =
         (page === "home" &&
-          (path.endsWith("index.html") || path.endsWith("/"))) ||
-        (page === "servicios" && path.includes("/servicios/")) ||
-        (page === "blog" && path.includes("/blog/")) ||
+          isHomePath &&
+          !inServicios &&
+          !inBlog) ||
+        (page === "servicios" && inServicios) ||
+        (page === "blog" && inBlog) ||
         (page === "nosotros" && path.includes("nosotros")) ||
         (page === "contacto" && path.includes("contacto"));
       if (active) el.classList.add("active");
