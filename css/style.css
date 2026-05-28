@@ -2084,6 +2084,20 @@ select.form-control {
     flex-direction: column;
     align-items: center;
   }
+  .page-hero {
+    padding-top: calc(var(--nav-height) + var(--sp-10));
+    padding-bottom: var(--sp-12);
+  }
+  .page-hero__content {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .page-hero .hero__title {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+  .page-hero .hero__desc {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2116,6 +2130,13 @@ select.form-control {
     min-width: 0;
     width: 100%;
     justify-content: center;
+  }
+  .nav__mobile {
+    gap: var(--sp-4);
+    padding-inline: var(--sp-5);
+  }
+  .nav__mobile-link {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
   }
   .stat-item:nth-child(1)::after {
     display: none;
