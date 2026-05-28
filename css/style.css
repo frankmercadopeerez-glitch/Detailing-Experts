@@ -1005,7 +1005,11 @@ p {
   justify-content: center;
   color: var(--clr-accent);
   background:
-    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 58%),
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.12),
+      transparent 58%
+    ),
     rgba(0, 204, 255, 0.06);
   border: 1px solid rgba(0, 204, 255, 0.35);
   border-radius: 8px;
@@ -1033,7 +1037,11 @@ p {
 
 .footer__contact-item:hover .footer__contact-icon {
   background:
-    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15), transparent 58%),
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.15),
+      transparent 58%
+    ),
     rgba(0, 204, 255, 0.1);
   border-color: rgba(0, 204, 255, 0.55);
   box-shadow:
@@ -2089,13 +2097,25 @@ select.form-control {
     justify-content: center;
   }
   .stats-bar__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
   .hero__stats {
-    gap: var(--sp-3) var(--sp-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    width: min(100%, 320px);
+    gap: var(--sp-3);
   }
   .hero__stat-number {
     font-size: clamp(1.55rem, 9vw, 2.25rem);
+  }
+  .footer__social {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .footer__social-link {
+    min-width: 0;
+    width: 100%;
+    justify-content: center;
   }
   .stat-item:nth-child(1)::after {
     display: none;
