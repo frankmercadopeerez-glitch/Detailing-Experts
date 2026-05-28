@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-Sitemap: https://detailingexperts.com.co/sitemap.xml
+Sitemap: https://detailingexperts.com/sitemap.xml

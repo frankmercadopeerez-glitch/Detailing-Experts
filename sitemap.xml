@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Core pages -->
   <url>
-    <loc>https://detailingexperts.com.co/index.html</loc>
+    <loc>https://detailingexperts.com/index.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/nosotros.html</loc>
+    <loc>https://detailingexperts.com/nosotros.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/contacto.html</loc>
+    <loc>https://detailingexperts.com/contacto.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -23,49 +23,49 @@
 
   <!-- Services -->
   <url>
-    <loc>https://detailingexperts.com.co/servicios/index.html</loc>
+    <loc>https://detailingexperts.com/servicios/index.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/servicios/proteccion-anticorrosiva.html</loc>
+    <loc>https://detailingexperts.com/servicios/proteccion-anticorrosiva.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/servicios/detailing-premium.html</loc>
+    <loc>https://detailingexperts.com/servicios/detailing-premium.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/servicios/ppf.html</loc>
+    <loc>https://detailingexperts.com/servicios/ppf.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/servicios/pdr.html</loc>
+    <loc>https://detailingexperts.com/servicios/pdr.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/servicios/polarizados.html</loc>
+    <loc>https://detailingexperts.com/servicios/polarizados.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/servicios/wrap.html</loc>
+    <loc>https://detailingexperts.com/servicios/wrap.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/servicios/latoneria-pintura.html</loc>
+    <loc>https://detailingexperts.com/servicios/latoneria-pintura.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -73,37 +73,37 @@
 
   <!-- Blog -->
   <url>
-    <loc>https://detailingexperts.com.co/blog/index.html</loc>
+    <loc>https://detailingexperts.com/blog/index.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/blog/proteccion-anticorrosiva-cartagena.html</loc>
+    <loc>https://detailingexperts.com/blog/proteccion-anticorrosiva-cartagena.html</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/blog/pdr-reparacion-golpes-sin-pintura.html</loc>
+    <loc>https://detailingexperts.com/blog/pdr-reparacion-golpes-sin-pintura.html</loc>
     <lastmod>2024-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/blog/ppf-paint-protection-film-cartagena.html</loc>
+    <loc>https://detailingexperts.com/blog/ppf-paint-protection-film-cartagena.html</loc>
     <lastmod>2024-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/blog/detailing-premium-cartagena.html</loc>
+    <loc>https://detailingexperts.com/blog/detailing-premium-cartagena.html</loc>
     <lastmod>2024-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://detailingexperts.com.co/blog/polarizado-de-vidrios-cartagena.html</loc>
+    <loc>https://detailingexperts.com/blog/polarizado-de-vidrios-cartagena.html</loc>
     <lastmod>2024-04-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
