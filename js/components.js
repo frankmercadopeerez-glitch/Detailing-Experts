@@ -22,8 +22,8 @@
   if (!document.querySelector('link[rel="icon"]')) {
     const favicon = document.createElement("link");
     favicon.rel = "icon";
-    favicon.type = "image/svg+xml";
-    favicon.href = base + "favicon.svg";
+    favicon.type = "image/png";
+    favicon.href = base + "images/Detailing%20(4).PNG";
     document.head.appendChild(favicon);
   }
 
@@ -33,7 +33,7 @@
   <div class="nav__container">
 
     <a href="${base}index.html" class="nav__logo" aria-label="Detailing Experts – Inicio">
-      <img src="${base}favicon.svg" alt="" aria-hidden="true" class="nav__logo-mark-img">
+      <img src="${base}images/Detailing%20(4).PNG" alt="" aria-hidden="true" class="nav__logo-mark-img">
       <div class="nav__logo-text">
         <span class="nav__logo-name">Detailing Experts</span>
         <span class="nav__logo-tagline">Cartagena · Premium</span>
