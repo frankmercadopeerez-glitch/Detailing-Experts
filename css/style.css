@@ -101,7 +101,9 @@ p {
   padding-block: var(--section-py);
 }
 .section--alt {
-  background-color: var(--clr-bg-2);
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .section--dark {
   background-color: var(--clr-bg-0);
@@ -159,6 +161,13 @@ p {
   text-transform: uppercase;
   color: var(--clr-accent);
   margin-bottom: var(--sp-3);
+  padding: 4px 14px 4px 10px;
+  background: rgba(0, 204, 255, 0.07);
+  border: 1px solid rgba(0, 204, 255, 0.22);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
 }
 
 .section-label::before {
@@ -238,33 +247,43 @@ p {
 }
 
 .btn-primary {
-  background: var(--clr-accent);
+  background: linear-gradient(135deg, rgba(0, 228, 255, 0.96) 0%, rgba(0, 168, 220, 0.90) 100%);
   color: var(--clr-bg-0);
-  box-shadow: 0 4px 20px var(--clr-accent-glow-md);
+  border: 1px solid rgba(0, 228, 255, 0.65);
+  box-shadow: 0 4px 24px rgba(0, 204, 255, 0.28), inset 0 1px 0 rgba(255,255,255,0.30), inset 0 -1px 0 rgba(0,0,0,0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-primary:hover {
-  background: #19d4ff;
-  box-shadow: 0 6px 30px var(--clr-accent-glow-lg);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 1) 0%, rgba(0, 192, 240, 0.95) 100%);
+  box-shadow: 0 8px 40px rgba(0, 204, 255, 0.45), inset 0 1px 0 rgba(255,255,255,0.35);
   transform: translateY(-2px);
 }
 
 .btn-outline {
-  background: transparent;
+  background: rgba(0, 204, 255, 0.07);
   color: var(--clr-accent);
-  border: 2px solid var(--clr-accent);
+  border: 1.5px solid rgba(0, 204, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 4px 16px rgba(0, 204, 255, 0.08);
 }
 
 .btn-outline:hover {
-  background: var(--clr-accent-glow);
-  box-shadow: var(--glow-sm);
+  background: rgba(0, 204, 255, 0.14);
+  border-color: rgba(0, 204, 255, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 6px 24px rgba(0, 204, 255, 0.2);
   transform: translateY(-2px);
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
   color: var(--clr-text-1);
-  border: 1px solid var(--clr-border);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .btn-ghost:hover {
@@ -295,36 +314,33 @@ p {
 
 /* ── Cards ─────────────────────────────────────────────────────── */
 .card {
-  background: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   padding: var(--sp-8);
   transition: all var(--transition-slow);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--glass-shadow);
 }
 
 .card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--clr-accent),
-    transparent
-  );
-  opacity: 0;
+  inset: 0;
+  background: var(--glass-specular);
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 1;
   transition: opacity var(--transition-base);
 }
 
 .card:hover {
-  border-color: var(--clr-border-hover);
-  background: var(--clr-bg-card-hover);
-  box-shadow: var(--shadow-lg), var(--glow-sm);
+  border-color: rgba(0, 204, 255, 0.28);
+  background: var(--glass-bg-md);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 0 40px rgba(0, 204, 255, 0.06), inset 0 1px 0 rgba(255,255,255,0.14);
   transform: translateY(-4px);
 }
 
@@ -334,8 +350,10 @@ p {
 
 /* ── Service Cards ─────────────────────────────────────────────── */
 .service-card {
-  background: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all var(--transition-slow);
@@ -343,12 +361,13 @@ p {
   flex-direction: column;
   text-decoration: none;
   color: inherit;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07);
 }
 
 .service-card:hover {
-  border-color: var(--clr-border-hover);
+  border-color: rgba(0, 204, 255, 0.30);
   transform: translateY(-6px);
-  box-shadow: var(--shadow-xl), var(--glow-sm);
+  box-shadow: 0 20px 56px rgba(0,0,0,0.55), 0 0 40px rgba(0, 204, 255, 0.07), inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
 .service-card__img {
@@ -373,8 +392,8 @@ p {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  background: linear-gradient(to top, var(--clr-bg-card), transparent);
+  height: 80px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
 }
 
 .service-card__body {
@@ -387,8 +406,8 @@ p {
 .service-card__icon {
   width: 52px;
   height: 52px;
-  background: var(--clr-accent-glow);
-  border: 1px solid var(--clr-border-hover);
+  background: rgba(0, 204, 255, 0.09);
+  border: 1px solid rgba(0, 204, 255, 0.22);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -396,6 +415,9 @@ p {
   font-size: 1.5rem;
   margin-bottom: var(--sp-4);
   transition: all var(--transition-base);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
 }
 
 .service-card:hover .service-card__icon {
@@ -536,11 +558,11 @@ p {
 }
 
 .nav.scrolled {
-  background: rgba(0, 0, 0, 0.97);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom-color: var(--clr-border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(32px) saturate(1.8);
+  -webkit-backdrop-filter: blur(32px) saturate(1.8);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 -1px 0 rgba(255,255,255,0.04);
 }
 
 .nav__container {
@@ -708,9 +730,9 @@ p {
 .nav__mobile {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.99);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
   z-index: calc(var(--z-nav) - 1);
   display: flex;
   flex-direction: column;
@@ -1210,9 +1232,11 @@ p {
 
 /* ── Stats Bar ─────────────────────────────────────────────────── */
 .stats-bar {
-  background: var(--clr-bg-card);
-  border-top: 1px solid var(--clr-border);
-  border-bottom: 1px solid var(--clr-border);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-block: var(--sp-8);
 }
 
@@ -1681,14 +1705,14 @@ select.form-control {
   bottom: var(--sp-6);
   right: var(--sp-6);
   z-index: var(--z-overlay);
-  width: 58px;
-  height: 58px;
-  background: #25d366;
+  width: 62px;
+  height: 62px;
+  background: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  box-shadow: none;
   text-decoration: none;
   transition: all var(--transition-spring);
   animation: fadeInUp 0.5s 1.5s ease both;
@@ -1696,20 +1720,21 @@ select.form-control {
 
 .whatsapp-float:hover {
   transform: scale(1.12) translateY(-2px);
-  box-shadow: 0 8px 35px rgba(37, 211, 102, 0.6);
+  filter: drop-shadow(0 6px 20px rgba(37, 211, 102, 0.55));
 }
 
-.whatsapp-float svg {
-  width: 28px;
-  height: 28px;
-  fill: white;
+.whatsapp-float img {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: block;
 }
 
 .whatsapp-float__pulse {
   position: absolute;
-  inset: 0;
+  inset: -5px;
   border-radius: 50%;
-  background: rgba(37, 211, 102, 0.4);
+  border: 2px solid rgba(37, 211, 102, 0.45);
   animation: waPulse 2.5s ease infinite;
 }
 
