@@ -154,24 +154,6 @@
           </p>
         </div>
         <div class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true">📞</span>
-          <p class="footer__contact-text">
-            <a href="tel:+573016501515">+57 301 6501515</a>
-          </p>
-        </div>
-        <div class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true">💬</span>
-          <p class="footer__contact-text">
-            <a href="https://wa.me/573016501515" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a>
-          </p>
-        </div>
-        <div class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true">📸</span>
-          <p class="footer__contact-text">
-            <a href="https://www.instagram.com/detailingexperts.x/" target="_blank" rel="noopener noreferrer">@detailingexperts.x</a>
-          </p>
-        </div>
-        <div class="footer__contact-item">
           <span class="footer__contact-icon" aria-hidden="true">🕐</span>
           <p class="footer__contact-text">
             Lunes – Sábado: 8:00 am – 6:00 pm<br>
