@@ -357,7 +357,7 @@ p {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-xl);
   padding: var(--sp-8);
   transition: all var(--transition-slow);
@@ -378,7 +378,7 @@ p {
 }
 
 .card:hover {
-  border-color: rgba(0, 204, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.8);
   background: var(--glass-bg-md);
   box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.55),
@@ -396,7 +396,7 @@ p {
   background: rgba(255, 255, 255, 0.045);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all var(--transition-slow);
@@ -410,7 +410,7 @@ p {
 }
 
 .service-card:hover {
-  border-color: rgba(0, 204, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.8);
   transform: translateY(-6px);
   box-shadow:
     0 20px 56px rgba(0, 0, 0, 0.55),
@@ -509,7 +509,7 @@ p {
 /* ── Blog Cards ────────────────────────────────────────────────── */
 .blog-card {
   background: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all var(--transition-slow);
@@ -520,7 +520,7 @@ p {
 }
 
 .blog-card:hover {
-  border-color: var(--clr-border-hover);
+  border-color: rgba(255, 255, 255, 0.8);
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg), var(--glow-sm);
 }
@@ -1297,13 +1297,13 @@ p {
 .feature-item {
   padding: var(--sp-6);
   background: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-xl);
   transition: all var(--transition-slow);
 }
 
 .feature-item:hover {
-  border-color: var(--clr-border-hover);
+  border-color: rgba(255, 255, 255, 0.8);
   box-shadow: var(--glow-sm);
   transform: translateY(-3px);
 }
@@ -1443,14 +1443,14 @@ p {
 /* ── Testimonials ──────────────────────────────────────────────── */
 .testimonial-card {
   background: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-xl);
   padding: var(--sp-8);
   transition: all var(--transition-slow);
 }
 
 .testimonial-card:hover {
-  border-color: var(--clr-border-hover);
+  border-color: rgba(255, 255, 255, 0.8);
   box-shadow: var(--shadow-md), var(--glow-sm);
 }
 
@@ -1527,7 +1527,7 @@ p {
 .process-step {
   counter-increment: steps;
   background: var(--clr-bg-card);
-  border: 1px solid var(--clr-border);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: var(--radius-xl);
   padding: var(--sp-8) var(--sp-6);
   text-align: center;
@@ -1535,7 +1535,7 @@ p {
 }
 
 .process-step:hover {
-  border-color: var(--clr-border-hover);
+  border-color: rgba(255, 255, 255, 0.8);
   transform: translateY(-4px);
   box-shadow: var(--shadow-md), var(--glow-sm);
 }
