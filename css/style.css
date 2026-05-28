@@ -602,16 +602,19 @@ p {
     background var(--transition-base),
     box-shadow var(--transition-base),
     border-color var(--transition-base);
-  border-bottom: 1px solid transparent;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .nav.scrolled {
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(32px) saturate(1.8);
-  -webkit-backdrop-filter: blur(32px) saturate(1.8);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.96);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.5),
+    0 6px 28px rgba(0, 0, 0, 0.62),
     inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -663,7 +666,8 @@ p {
 .nav__logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1;
+  gap: 0.2rem;
+  line-height: 1.08;
 }
 
 .nav__logo-name {
@@ -672,6 +676,7 @@ p {
   font-size: var(--text-lg);
   color: var(--clr-text-1);
   letter-spacing: 0.02em;
+  line-height: 1.05;
 }
 
 .nav__logo-tagline {
@@ -680,6 +685,7 @@ p {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: var(--fw-medium);
+  line-height: 1.15;
 }
 
 .nav__links {
