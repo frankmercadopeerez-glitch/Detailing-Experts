@@ -69,7 +69,7 @@
   <a href="${base}nosotros.html"           class="nav__mobile-link" data-page="nosotros">Nosotros</a>
   <a href="${base}contacto.html"           class="nav__mobile-link" data-page="contacto">Contacto</a>
   <a href="https://wa.me/573016501515?text=Hola%2C%20me%20interesa%20cotizar%20un%20servicio."
-     class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer" style="margin-top:1rem;">
+      class="btn btn-outline-white btn-lg" target="_blank" rel="noopener noreferrer" style="margin-top:1rem;">
       <img src="${base}images/whatsapp-logo.png" alt="" aria-hidden="true" class="btn__icon">
       Cotizar ahora
   </a>

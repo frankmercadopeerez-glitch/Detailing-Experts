@@ -294,6 +294,23 @@ p {
   transform: translateY(-2px);
 }
 
+.btn-outline-white {
+  background: transparent;
+  color: var(--clr-white);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: none;
+}
+
+.btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--clr-white);
+  color: var(--clr-white);
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
 .btn-ghost {
   background: var(--glass-bg);
   color: var(--clr-text-1);
@@ -721,8 +738,9 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--clr-accent);
-  color: var(--clr-bg-0);
+  background: transparent;
+  color: var(--clr-white);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   font-family: var(--font-heading);
   font-weight: var(--fw-bold);
   font-size: var(--text-sm);
@@ -732,7 +750,9 @@ p {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: all var(--transition-base);
-  box-shadow: 0 2px 12px var(--clr-accent-glow-md);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .nav__cta-icon {
@@ -742,8 +762,9 @@ p {
 }
 
 .nav__cta:hover {
-  background: #19d4ff;
-  box-shadow: 0 4px 20px var(--clr-accent-glow-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--clr-white);
+  box-shadow: none;
   transform: translateY(-1px);
 }
 
