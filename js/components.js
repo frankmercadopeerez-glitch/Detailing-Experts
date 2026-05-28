@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Detailing Experts — Shared Components
  * Injects header and footer into every page.
  * Set `window.basePath` BEFORE loading this script:
@@ -146,7 +146,7 @@
       <div>
         <h3 class="footer__heading">Contacto</h3>
         <div class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true">📍</span>
+          <span class="footer__contact-icon" aria-hidden="true">DIR</span>
           <p class="footer__contact-text">
             Cl. 31 #52-20, Progreso<br>
             Cartagena de Indias, Bolívar<br>
@@ -154,7 +154,7 @@
           </p>
         </div>
         <div class="footer__contact-item">
-          <span class="footer__contact-icon" aria-hidden="true">🕐</span>
+          <span class="footer__contact-icon" aria-hidden="true">HOR</span>
           <p class="footer__contact-text">
             Lunes – Sábado: 8:00 am – 6:00 pm<br>
             Domingos: Previa cita
