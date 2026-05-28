@@ -23,7 +23,7 @@
     const favicon = document.createElement("link");
     favicon.rel = "icon";
     favicon.type = "image/png";
-    favicon.href = base + "images/Detailing%20(4).PNG";
+    favicon.href = base + "images/favicon-circle.png";
     document.head.appendChild(favicon);
   }
 
