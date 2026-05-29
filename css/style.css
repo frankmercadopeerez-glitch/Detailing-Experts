@@ -1218,33 +1218,6 @@ p {
   animation: fadeInUp 0.7s 0.35s ease both;
 }
 
-.hero__stats {
-  display: flex;
-  gap: var(--sp-10);
-  justify-content: center;
-  flex-wrap: wrap;
-  animation: fadeInUp 0.7s 0.5s ease both;
-}
-
-.hero__stat {
-}
-
-.hero__stat-number {
-  font-family: var(--font-heading);
-  font-size: var(--text-4xl);
-  font-weight: var(--fw-bold);
-  color: var(--clr-accent);
-  line-height: 1;
-  text-shadow: var(--glow-text);
-}
-
-.hero__stat-label {
-  font-size: var(--text-sm);
-  color: var(--clr-text-3);
-  margin-top: var(--sp-1);
-  max-width: none;
-}
-
 /* ── Scroll indicator ──────────────────────────────────────────── */
 .scroll-indicator {
   display: none;
@@ -2056,12 +2029,6 @@ select.form-control {
   .hero__actions {
     margin-bottom: var(--sp-7);
   }
-  .hero__stats {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-    gap: var(--sp-4) var(--sp-6);
-    width: min(100%, 440px);
-  }
   .grid-2,
   .grid-3,
   .grid-4 {
@@ -2112,15 +2079,6 @@ select.form-control {
   }
   .stats-bar__grid {
     grid-template-columns: 1fr;
-  }
-  .hero__stats {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: min(100%, 320px);
-    gap: var(--sp-3);
-  }
-  .hero__stat-number {
-    font-size: clamp(1.55rem, 9vw, 2.25rem);
   }
   .footer__social {
     flex-direction: column;
