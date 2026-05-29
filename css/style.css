@@ -698,7 +698,7 @@ p {
 .nav__link {
   font-family: var(--font-heading);
   font-weight: var(--fw-semibold);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--clr-text-2);
   text-decoration: none;
   padding: var(--sp-2) var(--sp-2);
