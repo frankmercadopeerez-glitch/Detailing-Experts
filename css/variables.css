@@ -117,7 +117,7 @@
   /* ── Layout ─────────────────────────────────────────────────── */
   --container-max: 1280px;
   --container-pad: clamp(1rem, 5vw, 2.5rem);
-  --nav-height: 76px;
+  --nav-height: 70px;
   --section-py: clamp(4rem, 8vw, 7rem);
 
   /* ── Z-index ────────────────────────────────────────────────── */
