@@ -166,7 +166,7 @@
 
     <div class="footer__bottom">
       <p class="footer__copyright">
-        © 2025 Detailing Experts · Todos los derechos reservados · Cartagena de Indias, Colombia
+        © 2026 Detailing Experts · Todos los derechos reservados · Cartagena de Indias, Colombia
       </p>
       <ul class="footer__bottom-links" role="list">
         <li><a href="${base}contacto.html" class="footer__bottom-link">Contacto</a></li>
