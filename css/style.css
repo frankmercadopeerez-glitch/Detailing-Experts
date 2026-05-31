@@ -2110,12 +2110,59 @@ select.form-control {
   .grid-4 {
     grid-template-columns: 1fr;
   }
+  /* Footer móvil: ocultar columna Navegación, compactar Servicios */
   .footer__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-6);
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+  .footer__nav-col {
+    display: none;
+  }
+  .footer__links {
+    gap: var(--sp-2);
+  }
+  .footer__link {
+    font-size: var(--text-xs);
+  }
+  .footer__desc {
+    display: none;
   }
   .footer__bottom {
     flex-direction: column;
     text-align: center;
+  }
+
+  /* Testimonios compactos en móvil */
+  .testimonial-card--compact {
+    width: clamp(180px, 55vw, 240px);
+    padding: var(--sp-3) var(--sp-4);
+  }
+  .testimonial-card__text {
+    font-size: var(--text-xs);
+    line-height: 1.5;
+    margin-bottom: var(--sp-3);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .testimonial-card__stars {
+    font-size: .75rem;
+    margin-bottom: var(--sp-2);
+  }
+  .testimonial-card__avatar {
+    width: 28px;
+    height: 28px;
+    font-size: .65rem;
+  }
+  .testimonial-card__name {
+    font-size: var(--text-xs);
+  }
+  .testimonial-card__vehicle {
+    font-size: .65rem;
   }
   .stats-bar__grid {
     grid-template-columns: repeat(2, 1fr);

@@ -123,7 +123,7 @@
       </div>
 
       <!-- Navegación -->
-      <div>
+      <div class="footer__nav-col">
         <h3 class="footer__heading">Navegación</h3>
         <ul class="footer__links" role="list">
           <li><a href="${base}index.html"           class="footer__link">Inicio</a></li>
@@ -146,7 +146,7 @@
             </svg>
           </span>
           <p class="footer__contact-text">
-            Cl. 31 #52-20, Progreso<br>
+            Cl. 31 #52-32, Progreso<br>
             Cartagena de Indias, Bolívar<br>
             <em style="font-size:0.8em;opacity:0.8">Frente a la Plaza de Toros</em>
           </p>
