@@ -43,6 +43,7 @@
     <ul class="nav__links" role="list">
       <li><a href="${base}index.html"              class="nav__link" data-page="home">Inicio</a></li>
       <li><a href="${base}servicios/index.html"    class="nav__link" data-page="servicios">Servicios</a></li>
+      <li><a href="${base}galeria.html"            class="nav__link" data-page="galeria">Galería</a></li>
       <li><a href="${base}blog/index.html"         class="nav__link" data-page="blog">Blog</a></li>
       <li><a href="${base}nosotros.html"           class="nav__link" data-page="nosotros">Nosotros</a></li>
       <li><a href="${base}contacto.html"           class="nav__link" data-page="contacto">Contacto</a></li>
@@ -65,6 +66,7 @@
 <div class="nav__mobile" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menú móvil">
   <a href="${base}index.html"              class="nav__mobile-link" data-page="home">Inicio</a>
   <a href="${base}servicios/index.html"    class="nav__mobile-link" data-page="servicios">Servicios</a>
+  <a href="${base}galeria.html"            class="nav__mobile-link" data-page="galeria">Galería</a>
   <a href="${base}blog/index.html"         class="nav__mobile-link" data-page="blog">Blog</a>
   <a href="${base}nosotros.html"           class="nav__mobile-link" data-page="nosotros">Nosotros</a>
   <a href="${base}contacto.html"           class="nav__mobile-link" data-page="contacto">Contacto</a>
@@ -126,6 +128,7 @@
         <ul class="footer__links" role="list">
           <li><a href="${base}index.html"           class="footer__link">Inicio</a></li>
           <li><a href="${base}servicios/index.html" class="footer__link">Todos los Servicios</a></li>
+          <li><a href="${base}galeria.html"         class="footer__link">Galería de Trabajos</a></li>
           <li><a href="${base}blog/index.html"      class="footer__link">Blog</a></li>
           <li><a href="${base}nosotros.html"        class="footer__link">Nosotros</a></li>
           <li><a href="${base}contacto.html"        class="footer__link">Contacto</a></li>
@@ -208,6 +211,7 @@
       const active =
         (page === "home" && isHomePath && !inServicios && !inBlog) ||
         (page === "servicios" && inServicios) ||
+        (page === "galeria" && path.includes("galeria")) ||
         (page === "blog" && inBlog) ||
         (page === "nosotros" && path.includes("nosotros")) ||
         (page === "contacto" && path.includes("contacto"));
