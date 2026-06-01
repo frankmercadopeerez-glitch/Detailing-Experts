@@ -1,2 +1,12 @@
-*.js
-!js/
+# Utility scripts (used locally, not needed in repo)
+perf.js
+fix_imgs.js
+minify_css.js
+fix_address.js
+fix_arrows.js
+fix_arrows2.js
+fix_encoding_all.js
+fix_index_servicios.js
+add_og.js
+add_og.ps1
+add_breadcrumbs.js

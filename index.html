@@ -47,17 +47,22 @@
       content="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1200&q=80"
     />
 
-    <!-- Fonts -->
+    <!-- Fonts & performance hints -->
+    <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
+      media="print" onload="this.media='all'"
     />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    
+    <link rel="stylesheet" href="css/style.min.css" />
 
     <!-- JSON-LD – LocalBusiness Schema -->
     <script type="application/ld+json">
@@ -123,8 +128,7 @@
         <img
           src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80"
           alt="Auto de lujo en Detailing Experts Cartagena"
-          fetchpriority="high"
-        />
+          fetchpriority="high" width="1400" height="933" />
       </div>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__grid-lines" aria-hidden="true"></div>
@@ -157,8 +161,7 @@
               src="images/whatsapp-logo.png"
               alt=""
               aria-hidden="true"
-              class="btn__icon"
-            />
+              class="btn__icon" width="20" height="20" />
             Cotizar por WhatsApp
           </a>
           <a href="servicios/index.html" class="btn btn-outline btn-lg">
@@ -226,8 +229,7 @@
                 src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80"
                 alt="Detailing Premium Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -252,8 +254,7 @@
                 src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80"
                 alt="PPF Paint Protection Film Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -277,8 +278,7 @@
                 src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=600&q=80"
                 alt="Protección Anticorrosiva Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -300,8 +300,7 @@
                 src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80"
                 alt="Polarizado de carros Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -326,8 +325,7 @@
                 src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80"
                 alt="PDR reparación sin pintura Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -352,8 +350,7 @@
                 src="https://images.unsplash.com/photo-1583267746897-2cf415887172?auto=format&fit=crop&w=600&q=80"
                 alt="Wrap vinílico Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -378,8 +375,7 @@
                 src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"
                 alt="Latonería y pintura Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -400,8 +396,7 @@
                 src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=600&q=80"
                 alt="Especialistas Toyota Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -422,8 +417,7 @@
                 src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=600&q=80"
                 alt="Mantenimiento automotriz Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -444,8 +438,7 @@
                 src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80"
                 alt="Ceramic coating Cartagena"
                 class="service-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="600" height="220" />
             </div>
             <div class="service-card__body">
               <div class="service-card__icon" aria-hidden="true">
@@ -474,8 +467,7 @@
             <img
               src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=900&q=80"
               alt="Protección anticorrosiva transparente Cartagena"
-              loading="lazy"
-            />
+              loading="lazy" width="900" height="600" />
             <div class="split-section__glow" aria-hidden="true"></div>
           </div>
           <div class="reveal reveal-delay-1">
@@ -555,8 +547,7 @@
                   src="images/whatsapp-logo.png"
                   alt=""
                   aria-hidden="true"
-                  class="btn__icon"
-                />
+                  class="btn__icon" width="20" height="20" />
                 Cotizar
               </a>
             </div>
@@ -1358,8 +1349,7 @@
                 src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1400&q=80"
                 alt="Protección anticorrosiva Cartagena"
                 class="blog-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="800" height="200" />
             </div>
             <div class="blog-card__body">
               <span class="blog-card__tag">Anticorrosiva</span>
@@ -1388,8 +1378,7 @@
                 src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1400&q=80"
                 alt="PDR reparación sin pintura"
                 class="blog-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="800" height="200" />
             </div>
             <div class="blog-card__body">
               <span class="blog-card__tag">PDR</span>
@@ -1417,8 +1406,7 @@
                 src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80"
                 alt="PPF Paint Protection Film"
                 class="blog-card__img"
-                loading="lazy"
-              />
+                loading="lazy" width="800" height="200" />
             </div>
             <div class="blog-card__body">
               <span class="blog-card__tag">PPF</span>
