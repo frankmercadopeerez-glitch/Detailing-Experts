@@ -344,6 +344,8 @@
                   placeholder="+57 300 0000000"
                   required
                   autocomplete="tel"
+                  inputmode="numeric"
+                  pattern="[0-9\s\+\-]+"
                 />
               </div>
 
@@ -497,6 +499,12 @@
 
     <script>
       window.basePath = "";
+
+      // Validación de teléfono: solo números
+      document.getElementById('telefono')?.addEventListener('input', function(e) {
+        // Remover cualquier carácter que no sea número, +, -, espacio
+        this.value = this.value.replace(/[^\d\s\+\-]/g, '');
+      });
     </script>
     <script src="js/components.js" defer></script>
     <script src="js/main.js" defer></script>
