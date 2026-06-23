@@ -54,7 +54,28 @@
   <url><loc>https://detailingexperts.com/servicios/polarizado-bocagrande-cartagena.html</loc><lastmod>2026-06-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Blog hub -->
-  <url><loc>https://detailingexperts.com/blog/index.html</loc><lastmod>2026-05-29</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://detailingexperts.com/blog/index.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Blog: paginas por categoria (URLs separadas para SEO) -->
+  <url><loc>https://detailingexperts.com/blog/categoria-anticorrosiva.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-anticorrosiva-2.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-ppf.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-ppf-2.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-ceramic-coating.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-detailing.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-detailing-2.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-polarizado.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-wrap.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-pdr.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-latoneria-pintura.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-mantenimiento.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/categoria-guias.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://detailingexperts.com/blog/pagina-2.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/pagina-3.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/pagina-4.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/pagina-5.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/pagina-6.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://detailingexperts.com/blog/pagina-7.html</loc><lastmod>2026-06-03</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
 
   <!-- Existing blog posts -->
   <url><loc>https://detailingexperts.com/blog/proteccion-anticorrosiva-cartagena.html</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
