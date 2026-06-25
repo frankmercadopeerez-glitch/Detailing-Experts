@@ -11,6 +11,7 @@ Las rutas se calculan solas (relativas a la carpeta del repo), así que basta co
 | `generate_blog.py` | Reprocesa los **posts del blog** auto-generados (contenido + FAQ + schema). Incluye `TITLE_FIX` y `DESC_FIX` con correcciones. |
 | `generate_new_articles.py` | Crea/actualiza los **11 artículos cornerstone** (uno por categoría + uno general). El contenido está dentro del script. |
 | `generate_blog_pages.py` | Genera las **páginas de listado del blog**: `index.html`, `pagina-N.html` y `categoria-*.html` (con paginación). Léelo después de añadir o quitar artículos. |
+| `enhance_blog_posts.py` | Añade **breadcrumb visible** + sección **"Artículos relacionados"** (enlaces blog→blog de la misma categoría) a cada post generado. Idempotente. |
 
 ## Flujo recomendado al añadir un artículo nuevo al blog
 
@@ -18,8 +19,9 @@ Las rutas se calculan solas (relativas a la carpeta del repo), así que basta co
 2. Ejecuta:
    ```bash
    python scripts/generate_blog_pages.py
+   python scripts/enhance_blog_posts.py
    ```
-   Esto recalcula categorías y paginación e incluye el artículo en los listados.
+   El primero recalcula categorías y paginación; el segundo refresca breadcrumb y artículos relacionados.
 3. Añade la URL del nuevo artículo a `sitemap.xml` (y cualquier página de listado nueva que se haya creado, p. ej. `pagina-9.html`).
 
 ## Notas

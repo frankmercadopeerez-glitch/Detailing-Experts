@@ -1454,6 +1454,30 @@ p {
   white-space: nowrap;
   border: 0;
 }
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--clr-text-3);
+  margin-bottom: 1.5rem;
+}
+.breadcrumb a {
+  color: var(--clr-text-2);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.breadcrumb a:hover {
+  color: var(--clr-accent);
+}
+.breadcrumb__sep {
+  color: var(--clr-text-3);
+  opacity: 0.6;
+}
+.breadcrumb [aria-current] {
+  color: var(--clr-accent);
+}
 
 /* ── Why Us / Features ─────────────────────────────────────────── */
 .feature-grid {
@@ -2262,6 +2286,22 @@ select.form-control {
   .split-section__list {
     align-items: flex-start;
     text-align: left;
+  }
+  /* Tarjetas de beneficios: centrar texto e icono en móvil */
+  .feature-item {
+    text-align: center;
+  }
+  .feature-item__icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Tablas desplazables en móvil (evita texto apretado) */
+  .post-content table,
+  .container table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   /* Footer móvil: ocultar columna Navegación, compactar Servicios */
   .footer__grid {
