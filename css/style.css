@@ -215,6 +215,36 @@ p {
   margin-inline: auto;
 }
 
+/* Chips de servicios (lista compacta enlazada) */
+.service-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  justify-content: center;
+  max-width: 780px;
+  margin: 0 auto var(--sp-8);
+}
+.service-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--clr-text-2);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+.service-chip:hover {
+  color: var(--clr-accent);
+  border-color: var(--clr-border-hover);
+  background: var(--clr-accent-glow);
+}
+
 /* Cabecera de sección con título a un lado y botón al otro */
 .section-head-split {
   display: flex;
