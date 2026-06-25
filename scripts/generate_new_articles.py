@@ -256,17 +256,17 @@ def render(a):
 <meta property="og:url" content="{canon}">
 <meta property="og:title" content="{esc(title)} | Detailing Experts">
 <meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{img12}">
+<meta property="og:image" content="https://detailingexperts.com/images/og-default.png">
 <meta property="og:locale" content="es_CO">
 <meta property="article:published_time" content="2026-06-03">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
-<meta name="twitter:image" content="{img12}">
+<meta name="twitter:image" content="https://detailingexperts.com/images/og-default.png">
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.min.css">
 <script type="application/ld+json">{json.dumps(blogposting, ensure_ascii=False)}</script>
 <script type="application/ld+json">{json.dumps(breadcrumb, ensure_ascii=False)}</script>

@@ -27,6 +27,22 @@
     document.head.appendChild(favicon);
   }
 
+  /* ─── Inject web manifest (PWA) ──────────────────────────────── */
+  if (!document.querySelector('link[rel="manifest"]')) {
+    const mani = document.createElement("link");
+    mani.rel = "manifest";
+    mani.href = base + "manifest.json";
+    document.head.appendChild(mani);
+  }
+
+  /* ─── Inject theme-color ─────────────────────────────────────── */
+  if (!document.querySelector('meta[name="theme-color"]')) {
+    const theme = document.createElement("meta");
+    theme.name = "theme-color";
+    theme.content = "#000000";
+    document.head.appendChild(theme);
+  }
+
   /* ─── Navigation HTML ───────────────────────────────────────── */
   const navHTML = `
 <nav class="nav" id="main-nav" role="navigation" aria-label="Navegación principal">

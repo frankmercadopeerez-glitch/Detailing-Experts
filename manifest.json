@@ -1,0 +1,25 @@
+{
+  "name": "Detailing Experts Cartagena",
+  "short_name": "Detailing Experts",
+  "description": "Protección premium para tu auto en Cartagena: detailing, PPF, protección anticorrosiva, ceramic coating y polarizado.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "es-CO",
+  "icons": [
+    {
+      "src": "/images/favicon-circle.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/Detailing%20(4).PNG",
+      "sizes": "1080x1080",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
