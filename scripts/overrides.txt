@@ -23,40 +23,40 @@ comparativa-precio-modelos-auto|Comparativa de Precios de Servicios por Modelo: 
 reparacion-completa-oxidacion|Reparación Completa de Oxidación Severa: Presupuesto 2.5M a 3.5M|Oxidación severa: evaluación, soldadura, repintado y anticorrosiva con garantía de 2 años.
 paquete-economico-proteccion-basica|Paquete Económico de Protección Básica Cartagena Desde 1.2M|Presupuesto reducido: polarizado + detailing básico para máxima protección asequible desde 1.2M.
 consulta-especializada-vehiculo|Consulta Especializada: Recomendación de Servicio según tu Vehículo|Asesoría personalizada: análisis del estado, recomendación de servicios y presupuesto exacto sin compromiso.
-anticorrosiva-mazda-cx5|Protección Anticorrosiva Mazda CX-5 Cartagena|Anticorrosiva transparente para Mazda CX-5 desde 1.6M, protección contra el salitre en el clima costero de Cartagena.
+anticorrosiva-mazda-cx5|Protección Anticorrosiva Mazda CX-5 Cartagena|Pintura Anticorrosiva transparente para Mazda CX-5 desde 1.6M, protección contra el salitre en el clima costero de Cartagena.
 anticorrosiva-honda-crv|Protección Anticorrosiva Honda CR-V Cartagena|Protección marina para Honda CR-V desde 1.7M contra el salitre intenso de Cartagena.
 ceramic-coating-renault-duster|Ceramic Coating Renault Duster Cartagena|Ceramic coating hidrofóbico para Renault Duster desde 1.0M en las condiciones marinas de Cartagena.
 ppf-jeep-renegade|PPF Jeep Renegade Cartagena|PPF autorreparable para Jeep Renegade desde 2.2M, protección completa contra piedras y arañazos.
 wrap-honda-civic|Wrap Vinílico Honda Civic Cartagena|Wrap personalizado para Honda Civic desde 1.5M, cientos de colores y totalmente reversible.
-anticorrosiva-mitsubishi-l200|Protección Anticorrosiva Mitsubishi L200 Cartagena|Anticorrosiva reforzada para Mitsubishi L200 desde 1.9M, ideal para trabajo pesado en clima costero.
+anticorrosiva-mitsubishi-l200|Protección Anticorrosiva Mitsubishi L200 Cartagena|Pintura Anticorrosiva reforzada para Mitsubishi L200 desde 1.9M, ideal para trabajo pesado en clima costero.
 ceramic-ford-ecosport|Ceramic Coating Ford EcoSport Cartagena|Ceramic coating para Ford EcoSport desde 1.0M, protección contra el UV intenso de Cartagena.
 ppf-mazda-cx30|PPF Mazda CX-30 Cartagena|PPF para Mazda CX-30 desde 2.0M parcial a 4M completo, con transparencia total.
 detailing-bmw-serie3|Detailing Premium BMW Serie 3 Cartagena|Detailing de lujo para BMW Serie 3 desde 1.8M, con corrección de pintura y brillo perfecto.
-anticorrosiva-nissan-kicks|Protección Anticorrosiva Nissan Kicks Cartagena|Anticorrosiva para Nissan Kicks desde 1.3M, protección preventiva para el clima de Cartagena.
+anticorrosiva-nissan-kicks|Protección Anticorrosiva Nissan Kicks Cartagena|Pintura Anticorrosiva para Nissan Kicks desde 1.3M, protección preventiva para el clima de Cartagena.
 ceramic-suzuki-spresso|Ceramic Coating Suzuki S-Presso Cartagena|Ceramic coating para el compacto Suzuki S-Presso desde 800K, máxima protección a precio accesible.
 ppf-mercedes-c200|PPF Mercedes-Benz C200 Cartagena|PPF premium para Mercedes-Benz C200 desde 3.5M, protección completa para vehículo de lujo.
 wrap-renault-kwid|Wrap Vinílico Renault Kwid Cartagena|Wrap compacto para Renault Kwid desde 1.2M, ideal para personalización económica.
 detailing-mitsubishi-outlander|Detailing Mitsubishi Outlander Cartagena|Detailing completo para Mitsubishi Outlander desde 1.0M, interior y exterior impecable.
-anticorrosiva-volkswagen-tiguan|Protección Anticorrosiva Volkswagen Tiguan Cartagena|Anticorrosiva transparente para Volkswagen Tiguan desde 1.7M, protección costera premium.
+anticorrosiva-volkswagen-tiguan|Protección Anticorrosiva Volkswagen Tiguan Cartagena|Pintura Anticorrosiva transparente para Volkswagen Tiguan desde 1.7M, protección costera premium.
 ppf-honda-hrv|PPF Honda HR-V Cartagena|PPF para Honda HR-V desde 2.0M, protección frontal completa contra piedras y contaminantes.
 ceramic-kia-rio|Ceramic Coating Kia Rio Cartagena|Ceramic coating para Kia Rio desde 900K, brillo duradero de 2 a 5 años a precio ajustado.
-anticorrosiva-toyota-yaris|Protección Anticorrosiva Toyota Yaris Cartagena|Anticorrosiva para Toyota Yaris desde 1.3M, gran protección para uno de los modelos más populares.
+anticorrosiva-toyota-yaris|Protección Anticorrosiva Toyota Yaris Cartagena|Pintura Anticorrosiva para Toyota Yaris desde 1.3M, gran protección para uno de los modelos más populares.
 detailing-mazda3|Detailing Premium Mazda3 Cartagena|Detailing con corrección de pintura para Mazda3 desde 1.0M, con brillo de showroom.
 polarizado-ford-territory|Polarizado Ford Territory Cartagena|Polarizado para la SUV Ford Territory desde 700K, bloqueo del 99% de UV y protección completa.
-anticorrosiva-marbella-cartagena|Protección Anticorrosiva en Marbella, Cartagena|Anticorrosiva en Marbella desde 1.5M, zona costera de alta exposición salina.
+anticorrosiva-marbella-cartagena|Protección Anticorrosiva en Marbella, Cartagena|Pintura Anticorrosiva en Marbella desde 1.5M, zona costera de alta exposición salina.
 ceramic-marbella-cartagena|Ceramic Coating en Marbella, Cartagena|Ceramic coating hidrofóbico en Marbella desde 1.0M, protección marina premium.
 polarizado-marbella-cartagena|Polarizado Automotriz en Marbella, Cartagena|Polarizado en Marbella desde 550K, reducción del calor y bloqueo del UV intenso costero.
 anticorrosiva-castillogrande-cartagena|Protección Anticorrosiva en Castillogrande, Cartagena|Protección costera exclusiva en Castillogrande desde 1.5M, con la máxima calidad.
 ppf-castillogrande-cartagena|PPF en Castillogrande, Cartagena|PPF autorreparable en Castillogrande desde 2.2M, para vehículos premium de la zona exclusiva.
 ceramic-castillogrande-cartagena|Ceramic Coating en Castillogrande, Cartagena|Ceramic coating en Castillogrande desde 1.1M, con brillo y protección premium.
-anticorrosiva-la-boquilla-cartagena|Protección Anticorrosiva en La Boquilla, Cartagena|Anticorrosiva en La Boquilla desde 1.5M, para la exposición salina extrema de la zona de playas.
+anticorrosiva-la-boquilla-cartagena|Protección Anticorrosiva en La Boquilla, Cartagena|Pintura Anticorrosiva en La Boquilla desde 1.5M, para la exposición salina extrema de la zona de playas.
 detailing-la-boquilla-cartagena|Detailing en La Boquilla, Cartagena|Detailing completo en La Boquilla desde 900K, con limpieza profunda post-playa.
-anticorrosiva-crespo-cartagena|Protección Anticorrosiva en Crespo, Cartagena|Anticorrosiva en Crespo desde 1.4M, protección total en el barrio del aeropuerto.
+anticorrosiva-crespo-cartagena|Protección Anticorrosiva en Crespo, Cartagena|Pintura Anticorrosiva en Crespo desde 1.4M, protección total en el barrio del aeropuerto.
 ceramic-crespo-cartagena|Ceramic Coating en Crespo, Cartagena|Ceramic coating en Crespo desde 1.0M, hidrofóbico y anti-salitre duradero.
 detailing-crespo-cartagena|Detailing Premium en Crespo, Cartagena|Detailing en Crespo desde 850K, con pulida, corrección de pintura e interior impecable.
-anticorrosiva-manga-segunda|Protección Anticorrosiva en Manga, Cartagena|Anticorrosiva en el barrio histórico de Manga desde 1.5M, cobertura preventiva completa.
+anticorrosiva-manga-segunda|Protección Anticorrosiva en Manga, Cartagena|Pintura Anticorrosiva en el barrio histórico de Manga desde 1.5M, cobertura preventiva completa.
 ppf-manga-cartagena|PPF Paint Protection Film en Manga, Cartagena|PPF en Manga desde 2.0M, pintura 100% protegida sin alterar la estética.
-anticorrosiva-el-cabrero|Protección Anticorrosiva en El Cabrero, Cartagena|Anticorrosiva en El Cabrero desde 1.4M, en una zona histórica y exclusiva.
+anticorrosiva-el-cabrero|Protección Anticorrosiva en El Cabrero, Cartagena|Pintura Anticorrosiva en El Cabrero desde 1.4M, en una zona histórica y exclusiva.
 detailing-bocagrande-premium|Detailing Premium en Bocagrande, Cartagena|Detailing exclusivo en Bocagrande desde 1.2M, para la zona turística de lujo.
 auto-manchas-blancas-pintura|Auto con Manchas Blancas en la Pintura: Reparación en Cartagena|Eliminación de manchas blancas por salitre marino y corrección de pintura desde 500K.
 pintura-oxidada-reparar-cartagena|Pintura Oxidada: Cómo Repararla en Cartagena|Proceso de reparación de pintura oxidada con evaluación gratuita, desde 800K completo.
@@ -80,17 +80,17 @@ polish-vs-compound-pinturas|Polish vs Compound: Diferencias y Cuándo Usar Cada 
 ppf-mate-vs-brillante|PPF Mate vs PPF Brillante en Cartagena|Diferencias estéticas y funcionales entre PPF mate y brillante, con precios y recomendación.
 ceramic-9h-vs-5h-diferencias|Ceramic 9H vs Ceramic 5H: ¿Vale la Diferencia?|Comparativa de dureza de cerámicos: el 9H es más resistente y su precio diferencial está justificado.
 detailing-casero-vs-profesional|Detailing Casero vs Profesional: Resultados Reales|Comparativa de resultados DIY vs profesional y por qué el profesional justifica el costo.
-anticorrosiva-vs-galvanizado|Anticorrosiva vs Galvanizado: Diferencias|Cuándo aplicar anticorrosiva extra frente a un auto galvanizado de fábrica: costos y beneficios.
+anticorrosiva-vs-galvanizado|Pintura Anticorrosiva vs Galvanizado: Diferencias|Cuándo aplicar anticorrosiva extra frente a un auto galvanizado de fábrica: costos y beneficios.
 pulida-un-paso-vs-tres-pasos|Pulida de Un Paso vs Tres Pasos en Cartagena|Diferencias del proceso de corrección: un paso (300K) vs tres etapas (800K) y resultados esperados.
 tintado-fabrica-vs-profesional|Tintado de Fábrica vs Polarizado Profesional|Por qué el tintado de fábrica no protege igual que un polarizado profesional instalado.
-anticorrosiva-1500000-toyota|Anticorrosiva Transparente 1.5 Millones para Toyota en Cartagena|Qué incluye la anticorrosiva transparente de 1.5M para Toyota: proceso completo, evaluación de oxidación y mantenimiento bimensual gratuito.
+anticorrosiva-1500000-toyota|Pintura Anticorrosiva Transparente 1.5 Millones para Toyota en Cartagena|Qué incluye la anticorrosiva transparente de 1.5M para Toyota: proceso completo, evaluación de oxidación y mantenimiento bimensual gratuito.
 mantenimiento-anticorrosiva|Mantenimiento de Protección Anticorrosiva en Cartagena|El mantenimiento bimensual de la protección anticorrosiva es gratuito: revisamos y reforzamos las zonas que lo necesiten para conservar tu vehículo en el clima costero de Cartagena.
 ceramic-coating-900000-compacto|Ceramic Coating 900 Mil Pesos para Auto Compacto en Cartagena|Qué incluye el ceramic coating de 900K para autos compactos: durabilidad de 2 años en Cartagena.
 ppf-2000000-cobertura-parcial|PPF 2 Millones Cobertura Parcial en Cartagena|PPF parcial de 2M: qué cubre (capó y espejos) y duración de 7 años autorreparable.
 polarizado-500000-completo|Polarizado 500 Mil Pesos Auto Completo en Cartagena|Todos los vidrios polarizados por 500K a 700K, incluye parabrisas y cumple la ley colombiana.
 detailing-basico-600000|Detailing Básico 600 Mil Pesos en Cartagena|Qué incluye el detailing básico de 600K: lavado profundo, aspirado y brillo, sin corrección.
 paquete-anticorrosiva-ceramic-2500000|Paquete Anticorrosiva + Ceramic 2.5 Millones en Cartagena|Combo completo de 2.5M: anticorrosiva (1.2M) + ceramic (1.3M) para doble protección con ahorro.
-anticorrosiva-por-debajo-1200000|Anticorrosiva Transparente por Debajo de 1.2 Millones|Opción económica de anticorrosiva desde 1.2M para autos compactos, con máxima protección.
+anticorrosiva-por-debajo-1200000|Pintura Anticorrosiva Transparente por Debajo de 1.2 Millones|Opción económica de anticorrosiva desde 1.2M para autos compactos, con máxima protección.
 ceramic-suv-1500000-cartagena|Ceramic Coating para SUV 1.5 Millones en Cartagena|Ceramic para SUVs completo por 1.5M (Sportage, Tracker, Venue), con durabilidad de 3 a 5 años.
 wrap-parcial-1200000|Wrap Vinílico Parcial 1.2 Millones en Cartagena|Wrap parcial (capó + techo) por 1.2M, con cientos de colores y totalmente reversible.
 detailing-premium-1500000|Detailing Premium con Corrección 1.5 Millones en Cartagena|Detailing completo de 1.5M: corrección de pintura multi-etapa, interior y sellado final.

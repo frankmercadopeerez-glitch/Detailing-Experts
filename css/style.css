@@ -2334,6 +2334,10 @@ select.form-control {
     white-space: normal;
     text-align: center;
   }
+  .service-card__body {
+    align-items: center;
+    text-align: center;
+  }
   /* Footer móvil: ocultar columna Navegación, compactar Servicios */
   .footer__grid {
     grid-template-columns: 1fr 1fr;
