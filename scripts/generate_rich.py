@@ -306,10 +306,20 @@ def load_overrides():
 def main():
     OVERRIDES = load_overrides()
     import urllib.parse
+    # Paginas hechas a mano que NUNCA deben regenerarse (hub + paginas core)
+    PROTEGIDAS = {
+        "index.html", "proteccion-anticorrosiva.html", "detailing-premium.html",
+        "ppf.html", "polarizados.html", "pdr.html", "wrap.html",
+        "latoneria-pintura.html", "mantenimiento-automotriz-cartagena.html",
+        "ceramic-coating-cartagena.html", "toyota-cartagena.html",
+        "taller-automotriz-cartagena.html",
+    }
     # Detectar las paginas generadas por este script (firma unica) o aun delgadas
     SIG = "Solicita tu cotización sin compromiso"
     thin_list = []
     for path in sorted(glob.glob(os.path.join(SERV, "*.html"))):
+        if os.path.basename(path) in PROTEGIDAS:
+            continue
         raw = open(path, encoding="utf-8", errors="ignore").read()
         if "BreadcrumbList" not in raw or SIG in raw:
             thin_list.append(os.path.basename(path))
