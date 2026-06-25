@@ -212,6 +212,16 @@ p {
   margin-inline: auto;
 }
 
+/* Cabecera de sección con título a un lado y botón al otro */
+.section-head-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: var(--sp-12);
+}
+
 /* ── Buttons ───────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;
@@ -1679,10 +1689,6 @@ p {
   animation-direction: reverse;
 }
 
-.testimonials-marquee:hover .testimonials-marquee__track {
-  animation-play-state: paused;
-}
-
 .testimonial-card--compact {
   width: clamp(220px, 24vw, 280px);
   padding: var(--sp-5);
@@ -2302,6 +2308,22 @@ select.form-control {
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+  /* Cabecera de sección con botón: centrar en móvil */
+  .section-head-split {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  /* Tarjetas de blog: centrar contenido y pill en móvil */
+  .blog-card__body {
+    align-items: center;
+    text-align: center;
+  }
+  .blog-card__cat,
+  .blog-card__tag,
+  .blog-card__link {
+    align-self: center;
   }
   /* Footer móvil: ocultar columna Navegación, compactar Servicios */
   .footer__grid {
