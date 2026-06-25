@@ -846,12 +846,13 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--sp-6);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-base);
-  padding: var(--sp-16) var(--sp-8);
+  padding: calc(var(--nav-height) + var(--sp-8)) var(--sp-8) var(--sp-10);
+  overflow-y: auto;
 }
 
 .nav__mobile.open {
@@ -2259,7 +2260,7 @@ select.form-control {
     min-height: auto;
   }
   .hero__content {
-    padding-top: calc(var(--nav-height) + var(--sp-8));
+    padding-top: var(--sp-6);
     padding-bottom: var(--sp-10);
   }
   .hero__badge {
