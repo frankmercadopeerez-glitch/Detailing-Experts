@@ -1,8 +1,8 @@
 import type {IncomingMessage,ServerResponse} from 'node:http';
 import {timingSafeEqual,createHash} from 'node:crypto';
-import {firebase} from '../server/firebase';
-import {HttpError,todayBogota} from '../server/domain';
-import {json,failure} from './portal';
+import {firebase} from '../server/firebase.js';
+import {HttpError,todayBogota} from '../server/domain.js';
+import {json,failure} from './portal.js';
 export default async function handler(req:IncomingMessage,res:ServerResponse){try{
  if(req.method!=='GET')throw new HttpError(405,'Método no permitido.');const secret=process.env.CRON_SECRET;const auth=req.headers.authorization||'';const expected=`Bearer ${secret}`;if(!secret||auth.length!==expected.length||!timingSafeEqual(Buffer.from(auth),Buffer.from(expected)))throw new HttpError(401,'No autorizado.');
  const {db,messaging}=firebase();const today=todayBogota();let created=0,sent=0;

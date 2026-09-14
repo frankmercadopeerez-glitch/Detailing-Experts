@@ -4,7 +4,7 @@ import {getFirestore} from 'firebase-admin/firestore';
 import type {Firestore} from '@google-cloud/firestore';
 import {getMessaging} from 'firebase-admin/messaging';
 import {getAppCheck} from 'firebase-admin/app-check';
-import {HttpError} from './domain';
+import {HttpError} from './domain.js';
 export function configured(){return !!(process.env.FIREBASE_PROJECT_ID&&process.env.FIREBASE_CLIENT_EMAIL&&process.env.FIREBASE_PRIVATE_KEY);}
 export function firebase(){
  if(!getApps().length){

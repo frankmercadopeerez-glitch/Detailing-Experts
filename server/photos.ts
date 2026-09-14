@@ -3,8 +3,8 @@ import ImageKit from '@imagekit/nodejs';
 import {randomUUID} from 'node:crypto';
 import {Firestore,FieldValue} from '@google-cloud/firestore';
 import {z} from 'zod';
-import {id,requireAdmin,HttpError} from './domain';
-import {Actor,record} from './service';
+import {id,requireAdmin,HttpError} from './domain.js';
+import {Actor,record} from './service.js';
 function imagekit(){if(!process.env.IMAGEKIT_PRIVATE_KEY||!process.env.IMAGEKIT_URL_ENDPOINT)throw new HttpError(503,'La carga de fotos está pendiente de conectar ImageKit.');return new ImageKit({privateKey:process.env.IMAGEKIT_PRIVATE_KEY});}
 export async function compressImage(input:Buffer){
  if(input.length>1500000)throw new HttpError(413,'La imagen supera el tamaño permitido.');

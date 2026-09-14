@@ -1,7 +1,7 @@
 import type {IncomingMessage,ServerResponse} from 'node:http';
-import {firebase} from '../server/firebase';
-import {HttpError,validEvent,applyPayment} from '../server/domain';
-import {readBody,json,failure} from './portal';
+import {firebase} from '../server/firebase.js';
+import {HttpError,validEvent,applyPayment} from '../server/domain.js';
+import {readBody,json,failure} from './portal.js';
 import {createHash} from 'node:crypto';
 export default async function handler(req:IncomingMessage,res:ServerResponse){try{
  if(req.method!=='POST')throw new HttpError(405,'Método no permitido.');

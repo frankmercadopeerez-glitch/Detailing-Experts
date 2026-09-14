@@ -1,7 +1,7 @@
 import {FieldValue,Firestore,Query} from '@google-cloud/firestore';
 import {createHash,randomUUID} from 'node:crypto';
 import {z} from 'zod';
-import {assertOwner,requireAdmin,HttpError,id,vehicleSchema,jobSchema,invoiceSchema,requestSchema,registrationSchema,todayBogota,integrity} from './domain';
+import {assertOwner,requireAdmin,HttpError,id,vehicleSchema,jobSchema,invoiceSchema,requestSchema,registrationSchema,todayBogota,integrity} from './domain.js';
 export type Actor={uid:string;admin:boolean;email:string;name:string;phone?:string};
 export type Row=Record<string,any>;
 export async function record(db:Firestore,collection:string,key:string){const snap=await db.collection(collection).doc(id.parse(key)).get();if(!snap.exists)throw new HttpError(404,'No se encontró el registro.');return {id:snap.id,...snap.data()} as Row;}

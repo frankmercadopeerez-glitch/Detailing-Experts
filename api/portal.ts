@@ -1,9 +1,9 @@
 import type {IncomingMessage,ServerResponse} from 'node:http';
 import {ZodError} from 'zod';
-import {configured,firebase,authenticate} from '../server/firebase';
-import {HttpError,id} from '../server/domain';
-import {list,mutate,checkout,rateLimit,paymentsReady,record} from '../server/service';
-import {assertOwner} from '../server/domain';
+import {configured,firebase,authenticate} from '../server/firebase.js';
+import {HttpError,id} from '../server/domain.js';
+import {list,mutate,checkout,rateLimit,paymentsReady,record} from '../server/service.js';
+import {assertOwner} from '../server/domain.js';
 export async function readBody(req:IncomingMessage,max=65536){
  const parsed=(req as any).body;if(parsed!==undefined){if(Buffer.byteLength(JSON.stringify(parsed))>max)throw new HttpError(413,'Solicitud demasiado grande.');return typeof parsed==='string'?JSON.parse(parsed):parsed;}
  const chunks:Buffer[]=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>max)throw new HttpError(413,'Solicitud demasiado grande.');chunks.push(Buffer.from(chunk));}
@@ -21,7 +21,7 @@ export default async function handler(req:IncomingMessage,res:ServerResponse){tr
  if(req.method==='GET'){
   if(action==='me'){const user=await db.collection('users').doc(actor.uid).get();return json(res,200,{...actor,profile:user.data()||null});}
   if(action==='list')return json(res,200,await list(db,actor,url.searchParams.get('collection')||'',url.searchParams.get('cursor')||undefined));
-  if(action==='photos'){const job=await record(db,'jobs',id.parse(url.searchParams.get('jobId')));assertOwner(actor,job.ownerId);const {listPhotos}=await import('../server/photos');return json(res,200,await listPhotos(db,job));}
+  if(action==='photos'){const job=await record(db,'jobs',id.parse(url.searchParams.get('jobId')));assertOwner(actor,job.ownerId);const {listPhotos}=await import('../server/photos.js');return json(res,200,await listPhotos(db,job));}
   throw new HttpError(400,'Acción inválida.');
  }
  await rateLimit(db,actor.uid,'write',30);const body=await readBody(req);
