@@ -1,6 +1,7 @@
 import {cert,getApps,initializeApp} from 'firebase-admin/app';
 import {getAuth} from 'firebase-admin/auth';
 import {getFirestore} from 'firebase-admin/firestore';
+import type {Firestore} from '@google-cloud/firestore';
 import {getMessaging} from 'firebase-admin/messaging';
 import {getAppCheck} from 'firebase-admin/app-check';
 import {HttpError} from './domain';
@@ -10,7 +11,7 @@ export function firebase(){
    if(process.env.FIRESTORE_EMULATOR_HOST&&process.env.FIREBASE_AUTH_EMULATOR_HOST){initializeApp({projectId:process.env.FIREBASE_PROJECT_ID||'demo-detailing-experts'});}
    else {if(!configured())throw new HttpError(503,'El portal está en preparación. La conexión segura aún no está configurada.');initializeApp({credential:cert({projectId:process.env.FIREBASE_PROJECT_ID,clientEmail:process.env.FIREBASE_CLIENT_EMAIL,privateKey:process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g,'\n')})});}
  }
- return {db:getFirestore(),auth:getAuth(),messaging:getMessaging(),appCheck:getAppCheck()};
+ return {db:getFirestore() as Firestore,auth:getAuth(),messaging:getMessaging(),appCheck:getAppCheck()};
 }
 export async function authenticate(headers:Record<string,any>){
  const authorization=headers.authorization;

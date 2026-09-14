@@ -1,4 +1,4 @@
-import {FieldValue,Firestore} from 'firebase-admin/firestore';
+import {FieldValue,Firestore,Query} from '@google-cloud/firestore';
 import {createHash,randomUUID} from 'node:crypto';
 import {z} from 'zod';
 import {assertOwner,requireAdmin,HttpError,id,vehicleSchema,jobSchema,invoiceSchema,requestSchema,registrationSchema,todayBogota,integrity} from './domain';
@@ -14,7 +14,7 @@ function audit(db:Firestore,actor:Actor,action:string,entityId:string){return {r
 export async function list(db:Firestore,actor:Actor,collection:string,cursor?:string){
  if(!['vehicles','jobs','invoices','requests','notifications','users','audit'].includes(collection))throw new HttpError(400,'Colección inválida.');
  if(['users','audit'].includes(collection))requireAdmin(actor);
- let q:FirebaseFirestore.Query=db.collection(collection);
+ let q:Query=db.collection(collection);
  if(!actor.admin||collection==='notifications')q=q.where('ownerId','==',actor.uid);
  const order=collection==='audit'?'createdAt':'updatedAt';q=q.orderBy(order,'desc').orderBy('__name__','desc');
  if(cursor){const ref=await db.collection(collection).doc(id.parse(cursor)).get();if(!ref.exists)throw new HttpError(400,'Página inválida.');if(!actor.admin||collection==='notifications')assertOwner({...actor,admin:false},ref.data()?.ownerId);q=q.startAfter(ref);}
