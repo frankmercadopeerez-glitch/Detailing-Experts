@@ -1,0 +1,27 @@
+{
+  "name": "detailing-experts-portal",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && node scripts/build-public.mjs && vite build",
+    "test": "tsx --test tests/*.test.ts",
+    "test:rules": "firebase emulators:exec --project demo-detailing-experts --only firestore,storage \"tsx --test tests/rules.integration.ts\"",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@imagekit/nodejs": "^7.11.0",
+    "firebase": "^12.0.0",
+    "firebase-admin": "^13.0.0",
+    "sharp": "^0.35.4",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "firebase-tools": "^14.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0"
+  }
+}

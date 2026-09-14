@@ -1,0 +1,8 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {Readable} from 'node:stream';import handler,{sameOrigin,readBody} from '../api/portal';import photo from '../api/photo';import wompi from '../api/wompi';
+function response(){let code=0,body:any;return {setHeader(){},set statusCode(v:number){code=v;},end(v:string){body=JSON.parse(v);},get result(){return {code,body};}};}
+test('API privada rechaza petición anónima antes de leer datos',async()=>{const res=response();await handler({method:'GET',url:'?action=list&collection=jobs',headers:{}} as any,res as any);assert.equal(res.result.code,401);});
+test('bloquea escritura cross-origin aunque exista un bearer',()=>{assert.throws(()=>sameOrigin({headers:{origin:'https://attacker.test'}} as any));});
+test('no expone información de configuración secreta',async()=>{const res=response();await handler({method:'GET',url:'?action=status',headers:{}} as any,res as any);assert.equal(res.result.code,200);assert.ok(Object.values(res.result.body).every(v=>typeof v==='boolean'));});
+test('fotos requieren sesión y no admiten GET',async()=>{const res=response();await photo({method:'GET',headers:{}} as any,res as any);assert.equal(res.result.code,405);});
+test('Wompi permanece cerrado mientras no esté activado',async()=>{const old=process.env.PAYMENTS_ENABLED;process.env.PAYMENTS_ENABLED='false';const res=response();await wompi({method:'POST',headers:{}} as any,res as any);assert.equal(res.result.code,503);process.env.PAYMENTS_ENABLED=old;});
+test('tamaño de JSON y parser están limitados',async()=>{const req=Readable.from([Buffer.alloc(100,'a')]);await assert.rejects(()=>readBody(req as any,10));await assert.rejects(()=>readBody(Readable.from([Buffer.from('invalid')]) as any));});

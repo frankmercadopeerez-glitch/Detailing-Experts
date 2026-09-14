@@ -1,0 +1,7 @@
+const CACHE='detailing-shell-v1';
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['/portal/offline.html','/portal/icon.svg']))));
+self.addEventListener('activate',event=>event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('detailing-shell-')&&k!==CACHE).map(k=>caches.delete(k)))),self.clients.claim()])));
+self.addEventListener('fetch',event=>{if(event.request.mode==='navigate'&&new URL(event.request.url).pathname.startsWith('/portal/'))event.respondWith(fetch(event.request).catch(()=>caches.match('/portal/offline.html')));});
+// FCM delivers a data-only message. Never put private work details on the lock screen.
+self.addEventListener('push',event=>{event.waitUntil((async()=>{let data={};try{data=event.data.json().data||{};}catch{return;}await self.registration.showNotification('Detailing Experts',{body:'Tienes una actualización en tu portal.',icon:'/portal/icon.svg',tag:data.notificationId||'portal-update',data:{url:'/portal/#avisos'}});})());});
+self.addEventListener('notificationclick',event=>{event.notification.close();event.waitUntil((async()=>{const url=new URL('/portal/#avisos',self.location.origin).href;const clients=await self.clients.matchAll({type:'window',includeUncontrolled:true});for(const client of clients){if(new URL(client.url).origin===self.location.origin&&new URL(client.url).pathname.startsWith('/portal/')){await client.navigate(url);return client.focus();}}return self.clients.openWindow(url);})());});

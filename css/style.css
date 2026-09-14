@@ -2500,3 +2500,5 @@ select.form-control {
     right: var(--sp-4);
   }
 }
+
+.nav__portal{color:#fff;text-decoration:none;border:1px solid #ffffff55;border-radius:5px;padding:10px 14px;font-size:12px;white-space:nowrap}.nav__portal:focus-visible{outline:3px solid #fff;outline-offset:3px}@media(max-width:1100px){.nav__actions .nav__portal{display:none}}

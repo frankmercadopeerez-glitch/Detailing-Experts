@@ -66,6 +66,7 @@
     </ul>
 
     <div class="nav__actions">
+      <a href="/portal/" class="nav__portal" aria-label="Ingresar al portal de clientes">Ingresar al portal</a>
       <a href="https://wa.me/573016501515?text=Hola%2C%20me%20interesa%20cotizar%20un%20servicio."
          class="nav__cta" target="_blank" rel="noopener noreferrer" aria-label="Cotizar por WhatsApp">
         <img src="${base}images/whatsapp-logo.png" alt="" aria-hidden="true" class="nav__cta-icon">
@@ -80,6 +81,7 @@
 </nav>
 
 <div class="nav__mobile" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menú móvil">
+  <a href="/portal/" class="nav__mobile-link">Ingresar al portal</a>
   <a href="${base}index.html"              class="nav__mobile-link" data-page="home">Inicio</a>
   <a href="${base}servicios/index.html"    class="nav__mobile-link" data-page="servicios">Servicios</a>
   <a href="${base}galeria.html"            class="nav__mobile-link" data-page="galeria">Galería</a>

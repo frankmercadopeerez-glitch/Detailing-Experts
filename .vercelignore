@@ -1,0 +1,10 @@
+.tools
+.env*
+!.env.example
+credentials
+tests
+test-results
+.firebase
+*-debug.log
+node_modules
+dist

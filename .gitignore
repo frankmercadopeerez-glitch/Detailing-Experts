@@ -11,3 +11,14 @@ add_og.js
 add_og.ps1
 add_breadcrumbs.js
 scripts/listing_urls.txt
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.vercel/
+*-debug.log
+.firebase/
+test-results/
+credentials/
+.tools/
