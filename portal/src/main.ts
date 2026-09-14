@@ -1,5 +1,6 @@
 import {googleLogo,mountAccess,registrationView} from './access';
 import './style.css';
+import './brand.css';
 import {api,setup,login,logout,ready,notifications,compressPhoto} from './client';
 type Row=Record<string,any>;
 const root=document.querySelector<HTMLDivElement>('#app')!;
@@ -82,6 +83,6 @@ async function submitForm(form:HTMLFormElement){const fields=Object.fromEntries(
  if(form.id==='privacy-form')await save('privacy-request',{type:form.dataset.type});
  if(form.id==='photo-form'){if(demo){toast('Demostración: no se han subido archivos.');return;}const files=Array.from(form.querySelector<HTMLInputElement>('[name=photos]')!.files||[]);if(files.length>5)throw new Error('Selecciona un máximo de 5 fotos por carga.');let done=0;for(const file of files){const compressed=await compressPhoto(file);form.querySelector('#upload-progress')!.textContent=`Subiendo ${done+1}/${files.length}: ${Math.round(compressed.bytes/1024)} KB (original ${Math.round(compressed.original/1024)} KB)`;await api('upload',{jobId:key,stage:fields.stage,caption:fields.caption,base64:compressed.base64},{},'/api/photo');done++;}toast(`${done} fotos comprimidas y guardadas.`);await jobDetail(key!);}
 }
-async function openAccount(user:any){if(!user){me=null;loginView();return;}if(!user.emailVerified&&!user.phoneNumber){registrationView(root,false,()=>openAccount(user));return;}try{const info=await api('me');if(!info.profile?.registrationPlate){registrationView(root,true,()=>openAccount(user));return;}me=info;demo=false;await load();view();}catch(e){me=null;loginView();toast(e instanceof Error?e.message:'No se pudo abrir tu cuenta.');}}
+async function openAccount(user:any){if(!user){me=null;loginView();return;}if(!user.emailVerified&&!user.phoneNumber){registrationView(root,false,()=>openAccount(user));return;}try{const info=await api('me');if(!info.admin&&!info.profile?.registrationPlate){registrationView(root,true,()=>openAccount(user));return;}me=info;demo=false;await load();view();}catch(e){me=null;loginView();toast(e instanceof Error?e.message:'No se pudo abrir tu cuenta.');}}
 async function start(){try{serverStatus=await api('status');}catch{serverStatus={};}setup(user=>{void openAccount(user);});if('serviceWorker'in navigator)navigator.serviceWorker.register('/portal/sw.js',{scope:'/portal/'}).catch(()=>{});}
 void start();

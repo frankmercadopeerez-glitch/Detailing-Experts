@@ -5,6 +5,7 @@ import type {Firestore} from '@google-cloud/firestore';
 import {getMessaging} from 'firebase-admin/messaging';
 import {getAppCheck} from 'firebase-admin/app-check';
 import {HttpError} from './domain.js';
+import {isAdministrator} from './roles.js';
 export function configured(){return !!(process.env.FIREBASE_PROJECT_ID&&process.env.FIREBASE_CLIENT_EMAIL&&process.env.FIREBASE_PRIVATE_KEY);}
 export function firebase(){
  if(!getApps().length){
@@ -24,5 +25,5 @@ export async function authenticate(headers:Record<string,any>){
    const check=headers['x-firebase-appcheck'];if(typeof check!=='string')throw new HttpError(403,'No se pudo verificar la aplicación.');
    try{await f.appCheck.verifyToken(check);}catch{throw new HttpError(403,'No se pudo verificar la aplicación.');}
  }
- return {uid:token.uid,admin:token.admin===true,email:token.email||'',phone:token.phone_number||'',name:token.name||'Cliente'};
+ return {uid:token.uid,admin:isAdministrator(token),email:token.email||'',phone:token.phone_number||'',name:token.name||'Cliente'};
 }
