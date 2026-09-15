@@ -43,3 +43,17 @@ th{background:#071219}.plate{border-color:#54748a;color:#bfefff}.car-art{fill:#0
 dialog::backdrop{background:#000b;backdrop-filter:blur(8px)}
 @supports not (backdrop-filter:blur(1px)){.sidebar{background:#09151f}}
 @media(max-width:760px){.login-visual{min-height:290px}.login-panel{padding-bottom:36px}.login-box h2{font-size:40px}.sidebar{width:calc(100% - 20px);bottom:calc(10px + env(safe-area-inset-bottom));border-radius:25px;padding:7px}.sidebar nav{justify-content:flex-start}.sidebar nav a{flex:1 0 64px;min-height:59px;font-size:10px;padding:9px 6px}.topbar{background:#000}.content{padding-bottom:24px}.app-shell{padding-bottom:calc(108px + env(safe-area-inset-bottom))}.stats article{background:transparent}}
+/* Shared identity and photography from the public website. */
+.portal-brand{padding:0;gap:10px;flex-shrink:0;color:#fff;letter-spacing:.035em;font-family:var(--font-heading);font-size:20px}
+.portal-brand img{width:56px;height:56px;object-fit:contain}
+.portal-brand small{display:block;margin-top:4px;font-family:var(--font-body);font-size:8px;letter-spacing:.15em;color:#aabccb}
+.access-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px clamp(20px,4vw,60px);min-height:80px;background:#060a0ee8;border-bottom:1px solid #76dcff24;backdrop-filter:blur(20px)}
+.access-header nav a{font-size:12px;text-decoration:none;color:#b6ccd6}.access-header nav a:hover{color:var(--clr-accent)}
+.login{min-height:calc(100svh - 81px)}
+.login-visual{background:linear-gradient(180deg,#0007 0%,#0004 35%,#000e 100%),url('/images/portal-hero.webp') center/cover;min-height:680px}
+.login-visual:after{display:none}.login-visual>.brand{display:none}.login-visual>div:first-of-type{margin-top:auto;padding-top:120px;padding-bottom:48px}.login-visual h1{font-weight:700;letter-spacing:.005em;text-shadow:0 2px 24px #0009}.login-visual p{color:#d6e1e7}.login-bottom{color:#b8d0dc}
+.topbar{gap:16px;height:82px}.topbar .portal-area{margin-left:auto;color:var(--muted)}
+.sidebar{display:flex;align-items:center;gap:8px}.sidebar>.portal-brand{display:flex;justify-content:center;padding:0 8px;border-right:1px solid #95dfff24}.sidebar>.portal-brand img{width:44px;height:44px}.sidebar>.portal-brand>span{display:none}.sidebar nav{flex:1;min-width:0}
+.review-card{background:linear-gradient(180deg,#00131bd9,#000e),url('/images/portal-care.webp') center/cover}
+.registration-scene{min-height:calc(100svh - 81px);padding:48px 20px;background:linear-gradient(90deg,#000b,#000e),url('/images/portal-hero.webp') center/cover}.registration-scene .registration{margin:0 auto;background:#080f15ed;box-shadow:0 20px 80px #0008}
+@media(max-width:760px){.access-header{padding:10px 20px;min-height:72px}.portal-brand{font-size:17px}.portal-brand img{width:44px;height:44px}.access-header nav a{font-size:11px}.login-visual{min-height:300px;background-position:center 55%}.login-visual>div:first-of-type{padding-top:30px;padding-bottom:0}.login-visual h1{font-size:40px}.login-visual .eyebrow{margin-top:0}.login-panel>.back{display:none}.topbar{height:74px;padding:0 16px}.topbar .portal-area{display:none}.topbar .account-avatar{margin-left:auto}.sidebar>.portal-brand{padding:0 4px}.sidebar>.portal-brand img{width:34px;height:34px}.sidebar nav a{flex-basis:62px}.registration-scene{padding:28px 16px}.registration-scene .registration{padding:26px 22px}}
