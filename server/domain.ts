@@ -7,6 +7,10 @@ export const optionalDay = z.union([day,z.literal('')]).default('');
 export const status = z.enum(['programado','en_proceso','listo','entregado','atrasado','cancelado']);
 export const vehicleSchema = z.object({ownerId:id,plate:z.string().trim().toUpperCase().regex(/^[A-Z0-9-]{4,10}$/),brand:text(60),model:text(80),year:z.number().int().min(1900).max(2100),color:z.string().trim().max(50).default('')}).strict();
 export const registrationSchema=z.object({consent:z.literal(true),plate:vehicleSchema.shape.plate}).strict();
+export const customerVehicleSchema=z.object({
+ customer:z.object({name:text(120),phone:z.string().trim().transform(v=>v.replace(/[\s()-]/g,'')).refine(v=>/^\+?[0-9]{7,15}$/.test(v),'Teléfono inválido'),email:z.union([z.string().trim().toLowerCase().email(),z.literal('')]).default('')}).strict(),
+ vehicle:vehicleSchema.omit({ownerId:true})
+}).strict();
 export const jobSchema = z.object({ownerId:id,vehicleId:id,service:text(120),status,deadline:day,appointmentAt:z.string().datetime({offset:true}).or(z.literal('')).default(''),nextReview:optionalDay,notes:z.string().trim().max(3000).default(''),checklist:z.array(z.object({label:text(100),done:z.boolean()}).strict()).max(20).default([]),warrantyUntil:optionalDay,assignedTo:z.string().trim().max(100).default('')}).strict().refine(v=>!v.nextReview||v.nextReview>=v.deadline,'La revisión debe ser posterior a la fecha límite');
 export const invoiceSchema=z.object({ownerId:id,jobId:id,description:text(150),amountCents:z.number().int().min(10000).max(2000000000),dueDate:day}).strict();
 export const requestSchema=z.object({vehicleId:id,preferredDate:day,reason:text(1000)}).strict();

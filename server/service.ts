@@ -1,7 +1,7 @@
 import {FieldValue,Firestore,Query} from '@google-cloud/firestore';
 import {createHash,randomUUID} from 'node:crypto';
 import {z} from 'zod';
-import {assertOwner,requireAdmin,HttpError,id,vehicleSchema,jobSchema,invoiceSchema,requestSchema,registrationSchema,todayBogota,integrity} from './domain.js';
+import {assertOwner,requireAdmin,HttpError,id,vehicleSchema,customerVehicleSchema,jobSchema,invoiceSchema,requestSchema,registrationSchema,todayBogota,integrity} from './domain.js';
 export type Actor={uid:string;admin:boolean;email:string;name:string;phone?:string};
 export type Row=Record<string,any>;
 export async function record(db:Firestore,collection:string,key:string){const snap=await db.collection(collection).doc(id.parse(key)).get();if(!snap.exists)throw new HttpError(404,'No se encontró el registro.');return {id:snap.id,...snap.data()} as Row;}
@@ -47,6 +47,23 @@ export async function mutate(db:Firestore,actor:Actor,action:string,body:Row){
   const ref=db.collection('privacyRequests').doc(actor.uid);await ref.set({ownerId:actor.uid,status:'pendiente',type:z.enum(['export','delete']).parse(body.type),updatedAt:now});return {ok:true};
  }
  requireAdmin(actor);
+ if(action==='customer-vehicle'){
+  const data=customerVehicleSchema.parse(body);
+  const customerRef=db.collection('users').doc(randomUUID());
+  const vehicleRef=db.collection('vehicles').doc(randomUUID());
+  await db.runTransaction(async tx=>{
+   const duplicate=await tx.get(db.collection('vehicles').where('plate','==',data.vehicle.plate).limit(1));
+   if(!duplicate.empty)throw new HttpError(409,'Esta placa ya está registrada. Busca el vehículo antes de crear otro.');
+   const phoneMatch=await tx.get(db.collection('users').where('phone','==',data.customer.phone).limit(1));
+   const emailMatch=data.customer.email?await tx.get(db.collection('users').where('email','==',data.customer.email).limit(1)):null;
+   if(!phoneMatch.empty||emailMatch&&!emailMatch.empty)throw new HttpError(409,'Ya existe un cliente con este contacto. Selecciónalo en Cliente existente.');
+   // A contact record is not an authenticated account. Never grant access by an unverified phone or email match.
+   tx.create(customerRef,{...data.customer,ownerId:customerRef.id,accountStatus:'pending',source:'admin',createdBy:actor.uid,registrationPlate:data.vehicle.plate,plateVerification:'admin_recorded',createdAt:now,updatedAt:now});
+   tx.create(vehicleRef,{...data.vehicle,ownerId:customerRef.id,createdAt:now,updatedAt:now});
+   const log=audit(db,actor,'customer-vehicle.create',vehicleRef.id);tx.set(log.ref,log.data);
+  });
+  return {id:vehicleRef.id,customerId:customerRef.id};
+ }
  if(action==='vehicle'){
   const data=vehicleSchema.parse(body.data);await record(db,'users',data.ownerId);
   const ref=db.collection('vehicles').doc(body.id?id.parse(body.id):randomUUID());
