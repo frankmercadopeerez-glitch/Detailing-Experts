@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app';
-import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged,browserSessionPersistence,setPersistence,User,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendEmailVerification,sendPasswordResetEmail,RecaptchaVerifier,signInWithPhoneNumber,ConfirmationResult} from 'firebase/auth';
+import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged,browserSessionPersistence,setPersistence,User,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendEmailVerification,sendPasswordResetEmail,RecaptchaVerifier,signInWithPhoneNumber,ConfirmationResult,updateProfile} from 'firebase/auth';
 import {initializeAppCheck,ReCaptchaEnterpriseProvider,getToken as appCheckToken,AppCheck} from 'firebase/app-check';
 const env=import.meta.env;
 export const config={apiKey:env.VITE_FIREBASE_API_KEY,authDomain:env.VITE_FIREBASE_AUTH_DOMAIN,projectId:env.VITE_FIREBASE_PROJECT_ID,appId:env.VITE_FIREBASE_APP_ID,messagingSenderId:env.VITE_FIREBASE_MESSAGING_SENDER_ID};
@@ -9,10 +9,10 @@ export function setup(callback:(user:User|null)=>void){if(!ready){callback(null)
 export async function login(){if(!auth)throw new Error('El acceso está en preparación.');await setPersistence(auth,browserSessionPersistence);const provider=new GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await signInWithPopup(auth,provider);}
 let deviceToken='';
 export const phoneEnabled=env.VITE_PHONE_AUTH_ENABLED==='true';
-export async function emailLogin(email:string,password:string,register=false){
+export async function emailLogin(email:string,password:string,register=false,details?:{name:string;plate:string}){
  if(!auth)throw new Error('El acceso está en preparación.');
  await setPersistence(auth,browserSessionPersistence);
- if(register){const result=await createUserWithEmailAndPassword(auth,email,password);await sendEmailVerification(result.user);}
+ if(register){if(!details||details.name.length<3||! /^[A-Z0-9-]{4,10}$/.test(details.plate))throw new Error('Revisa el nombre y la placa.');sessionStorage.setItem('portal-registration',JSON.stringify({email:email.trim().toLowerCase(),...details}));const result=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(result.user,{displayName:details.name});await sendEmailVerification(result.user);}
  else await signInWithEmailAndPassword(auth,email,password);
 }
 export async function resetPassword(email:string){if(!auth)throw new Error('El acceso está en preparación.');await sendPasswordResetEmail(auth,email);}
@@ -51,3 +51,6 @@ export async function compressPhoto(file:File){
   const base64=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=reject;reader.readAsDataURL(blob!);});return {base64,bytes:blob.size,original:file.size};
  }finally{bitmap.close();}
 }
+
+export function registrationDraft():{name:string;plate:string}|null{try{const d=JSON.parse(sessionStorage.getItem('portal-registration')||'null');return d?.email===auth?.currentUser?.email?.toLowerCase()?d:null;}catch{return null;}}
+export function clearRegistrationDraft(){sessionStorage.removeItem('portal-registration');}

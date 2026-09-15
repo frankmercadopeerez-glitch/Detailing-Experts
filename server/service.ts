@@ -23,8 +23,8 @@ export async function list(db:Firestore,actor:Actor,collection:string,cursor?:st
 export async function mutate(db:Firestore,actor:Actor,action:string,body:Row){
  const now=stamp();
  if(action==='profile'){
-  const {consent,plate}=registrationSchema.parse(body);const ref=db.collection('users').doc(actor.uid);
-  await db.runTransaction(async tx=>{const old=await tx.get(ref);tx.set(ref,{ownerId:actor.uid,name:actor.name,email:actor.email,phone:actor.phone||'',registrationPlate:plate,plateVerification:'pending',updatedAt:now,...(!old.exists?{createdAt:now,consent,consentVersion:'portal-2026-09',notifications:false}: {})},{merge:true});});return {ok:true};
+  const {consent,plate,name}=registrationSchema.parse(body);const ref=db.collection('users').doc(actor.uid);
+  await db.runTransaction(async tx=>{const old=await tx.get(ref);tx.set(ref,{ownerId:actor.uid,name:name||actor.name,email:actor.email,phone:actor.phone||'',registrationPlate:plate,plateVerification:'pending',updatedAt:now,...(!old.exists?{createdAt:now,consent,consentVersion:'portal-2026-09',notifications:false}: {})},{merge:true});});return {ok:true};
  }
  if(action==='preferences'){
   const notifications=z.boolean().parse(body.notifications);await db.collection('users').doc(actor.uid).update({notifications,updatedAt:now});return {ok:true};

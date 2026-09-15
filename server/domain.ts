@@ -6,7 +6,7 @@ export const day = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(v=>!Number.isN
 export const optionalDay = z.union([day,z.literal('')]).default('');
 export const status = z.enum(['programado','en_proceso','listo','entregado','atrasado','cancelado']);
 export const vehicleSchema = z.object({ownerId:id,plate:z.string().trim().toUpperCase().regex(/^[A-Z0-9-]{4,10}$/),brand:text(60),model:text(80),year:z.number().int().min(1900).max(2100),color:z.string().trim().max(50).default('')}).strict();
-export const registrationSchema=z.object({consent:z.literal(true),plate:vehicleSchema.shape.plate}).strict();
+export const registrationSchema=z.object({consent:z.literal(true),name:z.string().trim().min(3).max(120).optional(),plate:vehicleSchema.shape.plate}).strict();
 export const customerVehicleSchema=z.object({
  customer:z.object({name:text(120),phone:z.string().trim().transform(v=>v.replace(/[\s()-]/g,'')).refine(v=>/^\+?[0-9]{7,15}$/.test(v),'Teléfono inválido'),email:z.union([z.string().trim().toLowerCase().email(),z.literal('')]).default('')}).strict(),
  vehicle:vehicleSchema.omit({ownerId:true})
