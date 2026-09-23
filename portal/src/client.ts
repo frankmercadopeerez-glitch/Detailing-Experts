@@ -12,12 +12,12 @@ export const phoneEnabled=env.VITE_PHONE_AUTH_ENABLED==='true';
 export async function emailLogin(email:string,password:string,register=false,details?:{name:string;plate:string}){
  if(!auth)throw new Error('El acceso está en preparación.');
  await setPersistence(auth,browserSessionPersistence);
- if(register){if(!details||details.name.length<3||! /^[A-Z0-9-]{4,10}$/.test(details.plate))throw new Error('Revisa el nombre y la placa.');sessionStorage.setItem('portal-registration',JSON.stringify({email:email.trim().toLowerCase(),...details}));const result=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(result.user,{displayName:details.name});await sendEmailVerification(result.user);}
+ if(register){if(!details||details.name.length<3||! /^[A-Z0-9-]{4,10}$/.test(details.plate))throw new Error('Revisa el nombre y la placa.');sessionStorage.setItem('portal-registration',JSON.stringify({email:email.trim().toLowerCase(),...details}));const result=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(result.user,{displayName:details.name});await sendEmailVerification(result.user,{url:location.origin+'/portal/'});}
  else await signInWithEmailAndPassword(auth,email,password);
 }
-export async function resetPassword(email:string){if(!auth)throw new Error('El acceso está en preparación.');await sendPasswordResetEmail(auth,email);}
+export async function resetPassword(email:string){if(!auth)throw new Error('El acceso está en preparación.');await sendPasswordResetEmail(auth,email,{url:location.origin+'/portal/'});}
 export async function refreshVerification(){if(!auth?.currentUser)return;await auth.currentUser.reload();await auth.currentUser.getIdToken(true);return auth.currentUser.emailVerified;}
-export async function resendVerification(){if(auth?.currentUser)await sendEmailVerification(auth.currentUser);}
+export async function resendVerification(){if(auth?.currentUser)await sendEmailVerification(auth.currentUser,{url:location.origin+'/portal/'});}
 let verifier:RecaptchaVerifier|undefined,confirmation:ConfirmationResult|undefined;
 export async function phoneCode(phone:string){
  if(!auth||!phoneEnabled)throw new Error('El acceso por SMS aún no está habilitado.');
@@ -31,7 +31,7 @@ export async function api(action:string,body?:unknown,params:Record<string,strin
  const headers:Record<string,string>={};if(auth?.currentUser)headers.Authorization=`Bearer ${await auth.currentUser.getIdToken()}`;
  if(check)headers['X-Firebase-AppCheck']=(await appCheckToken(check)).token;
  if(body!==undefined)headers['Content-Type']='application/json';
- const url=path===' /api/photo'?path:`${path}?${new URLSearchParams({action,...params})}`;
+ const url=path==='/api/photo'?path:`${path}?${new URLSearchParams({action,...params})}`;
  const res=await fetch(url,{method:body===undefined?'GET':'POST',headers,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store',signal:AbortSignal.timeout(40000)});
  const data=await res.json();if(!res.ok)throw new Error(data.error||'No se pudo completar la operación.');return data;
 }

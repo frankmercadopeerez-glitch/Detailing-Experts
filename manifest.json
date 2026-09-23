@@ -10,16 +10,10 @@
   "lang": "es-CO",
   "icons": [
     {
-      "src": "/images/favicon-circle.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/images/Detailing%20(4).PNG",
+      "src": "/images/brand-icon-20260917.png",
       "sizes": "1080x1080",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any"
     }
   ]
 }

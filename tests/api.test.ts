@@ -6,3 +6,4 @@ test('no expone información de configuración secreta',async()=>{const res=resp
 test('fotos requieren sesión y no admiten GET',async()=>{const res=response();await photo({method:'GET',headers:{}} as any,res as any);assert.equal(res.result.code,405);});
 test('Wompi permanece cerrado mientras no esté activado',async()=>{const old=process.env.PAYMENTS_ENABLED;process.env.PAYMENTS_ENABLED='false';const res=response();await wompi({method:'POST',headers:{}} as any,res as any);assert.equal(res.result.code,503);process.env.PAYMENTS_ENABLED=old;});
 test('tamaño de JSON y parser están limitados',async()=>{const req=Readable.from([Buffer.alloc(100,'a')]);await assert.rejects(()=>readBody(req as any,10));await assert.rejects(()=>readBody(Readable.from([Buffer.from('invalid')]) as any));});
+test('JSON inválido preprocesado devuelve error de cliente',async()=>{await assert.rejects(()=>readBody({body:'invalid'} as any),(error:any)=>error.status===400);});

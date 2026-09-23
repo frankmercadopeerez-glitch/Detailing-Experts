@@ -20,9 +20,33 @@ test('flujo persistente, aislamiento de clientes, conflictos y cobros',async()=>
  await assert.rejects(()=>checkout(db,alice,invoice.id!));
  await assert.rejects(()=>mutate(db,bob,'request',{vehicleId:vehicle.id,preferredDate:'2027-02-01',reason:'Other vehicle'}));
  const request=await mutate(db,alice,'request',{vehicleId:vehicle.id,preferredDate:'2027-02-01',reason:'Revisión'});
+ await assert.rejects(()=>mutate(db,alice,'request',{vehicleId:vehicle.id,preferredDate:'2027-02-01',reason:'Duplicate'}));
  await mutate(db,admin,'resolve-request',{id:request.id,status:'atendida',reply:'Revisaremos la disponibilidad.'});
  await assert.rejects(()=>mutate(db,admin,'resolve-request',{id:request.id,status:'atendida',reply:'Duplicate'}));
  assert.ok((await list(db,alice,'notifications')).items.length>=3);
  const first=(await list(db,alice,'notifications')).items[0];await assert.rejects(()=>mutate(db,bob,'read-notification',{id:first.id}));
+ // A cancelled job must never release the reservation of a replacement job.
+ const beforeCancel=(await db.collection('jobs').doc(job.id!).get()).data()!;
+ await mutate(db,admin,'job',{id:job.id,version:beforeCancel.updatedAt,data:{...jobData,status:'cancelado'}});
+ const replacement=await mutate(db,admin,'job',{data:jobData});
+ const cancelled=(await db.collection('jobs').doc(job.id!).get()).data()!;
+ await mutate(db,admin,'job',{id:job.id,version:cancelled.updatedAt,data:{...jobData,status:'cancelado',notes:'Cancelación confirmada'}});
+ const reservation=await db.collection('_slots').doc(Buffer.from(new Date(jobData.appointmentAt).toISOString()).toString('base64url')).get();
+ assert.equal(reservation.data()?.jobId,replacement.id);
+ await assert.rejects(()=>mutate(db,admin,'vehicle',{data:{ownerId:'bob',plate:'ABC123',brand:'Toyota',model:'Prado',year:2024}}));
+ const contact=await mutate(db,admin,'customer-vehicle',{customer:{name:'Customer pending',phone:'+573001234567',email:'pending@example.test'},vehicle:{plate:'LINK123',brand:'Kia',model:'Rio',year:2023}});
+ const linkedJob=await mutate(db,admin,'job',{data:{...jobData,ownerId:contact.customerId,vehicleId:contact.id,appointmentAt:''}});
+ await assert.rejects(()=>mutate(db,bob,'link-customer',{contactId:contact.customerId,accountId:'bob',confirmed:true}));
+ await assert.rejects(()=>mutate(db,admin,'link-customer',{contactId:contact.customerId,accountId:'bob',confirmed:false}));
+ await mutate(db,admin,'link-customer',{contactId:contact.customerId,accountId:'bob',confirmed:true});
+ assert.ok((await list(db,bob,'jobs')).items.some(j=>j.id===linkedJob.id));
+ assert.ok(!(await list(db,alice,'jobs')).items.some(j=>j.id===linkedJob.id));
+ await assert.rejects(()=>mutate(db,admin,'link-customer',{contactId:contact.customerId,accountId:'alice',confirmed:true}));
+ await mutate(db,bob,'privacy-request',{type:'export'});
+ await assert.rejects(()=>mutate(db,bob,'privacy-request',{type:'delete'}));
+ assert.equal((await list(db,alice,'privacyRequests')).items.length,0);
+ await assert.rejects(()=>mutate(db,bob,'resolve-privacy',{id:'bob',reply:'Forged reply'}));
+ await mutate(db,admin,'resolve-privacy',{id:'bob',reply:'Copia entregada por el canal acordado.'});
+ assert.equal((await list(db,bob,'privacyRequests')).items[0].status,'atendida');
  }finally{await db.terminate();await deleteApp(app);}
 });

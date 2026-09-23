@@ -40,7 +40,7 @@
     if (e.target.closest("#mobile-nav a")) {
       const btn = document.getElementById("nav-hamburger");
       const mobileNav = document.getElementById("mobile-nav");
-      if (btn) btn.classList.remove("open");
+      if (btn) {btn.classList.remove("open");btn.setAttribute("aria-expanded","false");}
       if (mobileNav) mobileNav.classList.remove("open");
       document.body.style.overflow = "";
     }
@@ -120,7 +120,9 @@
       const nombre = encodeURIComponent(this.nombre?.value || "");
       const servicio = encodeURIComponent(this.servicio?.value || "");
       const mensaje = encodeURIComponent(this.mensaje?.value || "");
-      const text = `Hola, soy ${nombre}. Me interesa el servicio de ${servicio}. ${mensaje}`;
+      const telefono = encodeURIComponent(this.telefono?.value || "");
+      const vehiculo = encodeURIComponent(this.vehiculo?.value || "");
+      const text = `Hola, soy ${nombre}. Teléfono: ${telefono}. Vehículo: ${vehiculo}. Me interesa el servicio de ${servicio}. ${mensaje}`;
       window.open(
         `https://wa.me/573016501515?text=${text}`,
         "_blank",

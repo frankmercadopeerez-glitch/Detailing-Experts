@@ -5,7 +5,7 @@ import {HttpError,id} from '../server/domain.js';
 import {list,mutate,checkout,rateLimit,paymentsReady,record} from '../server/service.js';
 import {assertOwner} from '../server/domain.js';
 export async function readBody(req:IncomingMessage,max=65536){
- const parsed=(req as any).body;if(parsed!==undefined){if(Buffer.byteLength(JSON.stringify(parsed))>max)throw new HttpError(413,'Solicitud demasiado grande.');return typeof parsed==='string'?JSON.parse(parsed):parsed;}
+ const parsed=(req as any).body;if(parsed!==undefined){if(Buffer.byteLength(JSON.stringify(parsed))>max)throw new HttpError(413,'Solicitud demasiado grande.');try{return typeof parsed==='string'?JSON.parse(parsed):parsed;}catch{throw new HttpError(400,'Solicitud inválida.');}}
  const chunks:Buffer[]=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>max)throw new HttpError(413,'Solicitud demasiado grande.');chunks.push(Buffer.from(chunk));}
  try{return JSON.parse(Buffer.concat(chunks).toString()||'{}');}catch{throw new HttpError(400,'Solicitud inválida.');}
 }
@@ -15,7 +15,7 @@ export function failure(res:ServerResponse,e:unknown){if(e instanceof HttpError)
 export default async function handler(req:IncomingMessage,res:ServerResponse){try{
  const url=new URL(req.url||'','http://localhost');const action=url.searchParams.get('action')||'status';
  if(!['GET','POST'].includes(req.method||'')){res.setHeader('Allow','GET, POST');return json(res,405,{error:'Método no permitido.'});}
- if(action==='status'&&req.method==='GET')return json(res,200,{configured:configured(),payments:paymentsReady(),photos:!!process.env.IMAGEKIT_PRIVATE_KEY,notifications:process.env.NOTIFICATIONS_ENABLED==='true'});
+ if(action==='status'&&req.method==='GET')return json(res,200,{configured:configured(),payments:paymentsReady(),photos:!!process.env.IMAGEKIT_PRIVATE_KEY&&!!process.env.IMAGEKIT_URL_ENDPOINT,notifications:process.env.NOTIFICATIONS_ENABLED==='true'});
  if(req.method==='POST'){sameOrigin(req);if(!req.headers['content-type']?.startsWith('application/json'))throw new HttpError(415,'Se requiere JSON.');}
  const actor=await authenticate(req.headers);const {db}=firebase();await rateLimit(db,actor.uid,'api',120);
  if(req.method==='GET'){
