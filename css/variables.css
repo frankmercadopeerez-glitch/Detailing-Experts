@@ -21,7 +21,7 @@
 
   --clr-text-1: #eef4ff; /* Texto principal    */
   --clr-text-2: #9eb2cc; /* Texto secundario   */
-  --clr-text-3: #5a7090; /* Texto apagado      */
+  --clr-text-3: #8297b3; /* Texto secundario accesible sobre negro */
   --clr-text-accent: #00ccff; /* Texto en acento    */
 
   --clr-border: rgba(0, 204, 255, 0.1);

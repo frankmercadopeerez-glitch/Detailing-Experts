@@ -1,11 +1,12 @@
-import {initializeApp} from 'firebase/app';
+import {initializeApp,FirebaseApp} from 'firebase/app';
 import {getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged,browserSessionPersistence,setPersistence,User,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendEmailVerification,sendPasswordResetEmail,RecaptchaVerifier,signInWithPhoneNumber,ConfirmationResult,updateProfile} from 'firebase/auth';
 import {initializeAppCheck,ReCaptchaEnterpriseProvider,getToken as appCheckToken,AppCheck} from 'firebase/app-check';
 const env=import.meta.env;
 export const config={apiKey:env.VITE_FIREBASE_API_KEY,authDomain:env.VITE_FIREBASE_AUTH_DOMAIN,projectId:env.VITE_FIREBASE_PROJECT_ID,appId:env.VITE_FIREBASE_APP_ID,messagingSenderId:env.VITE_FIREBASE_MESSAGING_SENDER_ID};
 export const ready=Object.values(config).every(Boolean);
-let auth:ReturnType<typeof getAuth>|undefined,check:AppCheck|undefined;
-export function setup(callback:(user:User|null)=>void){if(!ready){callback(null);return;}const app=initializeApp(config);auth=getAuth(app);if(env.VITE_FIREBASE_APPCHECK_SITE_KEY)check=initializeAppCheck(app,{provider:new ReCaptchaEnterpriseProvider(env.VITE_FIREBASE_APPCHECK_SITE_KEY),isTokenAutoRefreshEnabled:true});onAuthStateChanged(auth,callback);}
+let app:FirebaseApp|undefined,auth:ReturnType<typeof getAuth>|undefined,check:AppCheck|undefined;
+export function setup(callback:(user:User|null)=>void){if(!ready){callback(null);return;}app=initializeApp(config);auth=getAuth(app);onAuthStateChanged(auth,callback);}
+function ensureCheck(){if(!check&&app&&env.VITE_FIREBASE_APPCHECK_SITE_KEY)check=initializeAppCheck(app,{provider:new ReCaptchaEnterpriseProvider(env.VITE_FIREBASE_APPCHECK_SITE_KEY),isTokenAutoRefreshEnabled:true});return check;}
 export async function login(){if(!auth)throw new Error('El acceso está en preparación.');await setPersistence(auth,browserSessionPersistence);const provider=new GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await signInWithPopup(auth,provider);}
 let deviceToken='';
 export const phoneEnabled=env.VITE_PHONE_AUTH_ENABLED==='true';
@@ -29,7 +30,7 @@ export async function confirmPhone(code:string){if(!confirmation)throw new Error
 export async function logout(){if(deviceToken){try{await api('device',{token:deviceToken,remove:true});}catch{/* session still closes */}try{const {getMessaging,deleteToken}=await import('firebase/messaging');await deleteToken(getMessaging());}catch{}deviceToken='';}if(auth)await signOut(auth);}
 export async function api(action:string,body?:unknown,params:Record<string,string>={},path='/api/portal'){
  const headers:Record<string,string>={};if(auth?.currentUser)headers.Authorization=`Bearer ${await auth.currentUser.getIdToken()}`;
- if(check)headers['X-Firebase-AppCheck']=(await appCheckToken(check)).token;
+ const protectedCheck=auth?.currentUser?ensureCheck():undefined;if(protectedCheck)headers['X-Firebase-AppCheck']=(await appCheckToken(protectedCheck)).token;
  if(body!==undefined)headers['Content-Type']='application/json';
  const url=path==='/api/photo'?path:`${path}?${new URLSearchParams({action,...params})}`;
  const res=await fetch(url,{method:body===undefined?'GET':'POST',headers,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store',signal:AbortSignal.timeout(40000)});
