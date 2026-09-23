@@ -9,3 +9,6 @@ dialog{border:1px solid #d6ddcd;border-radius:16px;padding:28px;max-width:740px;
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 .email-access{margin-top:24px}.access-divider{text-align:center;color:#666;margin:20px 0}.email-access form{display:grid;gap:12px}.email-access label,.registration form>label{display:grid;gap:6px}.email-access input,.registration input:not([type=checkbox]){width:100%;padding:12px;border:1px solid #ccd2ca;border-radius:8px;background:white;color:#172219}.email-access details{margin-top:18px}.email-access summary{cursor:pointer}.text-button{background:none;border:0;padding:12px;text-decoration:underline;cursor:pointer;color:inherit}.access-message{font-size:14px}.registration{max-width:540px;margin:8vh auto;padding:32px}.registration form{display:grid;gap:20px}.login-box>button[data-action=login]{background:white;color:#1f1f1f;border:1px solid #747775;display:flex;align-items:center;justify-content:center;gap:12px}.login-panel{overflow-y:auto}.registration .consent{display:flex}@media(max-width:600px){.registration{margin:24px 16px}}
+
+/* Preserve native hidden semantics when component display rules apply. */
+[hidden] { display: none !important; }
