@@ -48,7 +48,7 @@
 <nav class="nav" id="main-nav" role="navigation" aria-label="Navegación principal">
   <div class="nav__container">
 
-    <a href="${base}index.html" class="nav__logo" aria-label="Detailing Experts Cartagena Premium – Inicio">
+    <a href="${base}index.html" class="nav__logo">
       <img src="${base}images/Detailing%20(4).PNG" alt="" aria-hidden="true" class="nav__logo-mark-img">
       <div class="nav__logo-text">
         <span class="nav__logo-name">Detailing Experts</span>
@@ -103,7 +103,7 @@
 
       <!-- Brand -->
       <div class="footer__brand">
-        <a href="${base}index.html" class="footer__logo" aria-label="EX Detailing Experts – Inicio">
+        <a href="${base}index.html" class="footer__logo">
           <div class="footer__logo-mark" aria-hidden="true">EX</div>
           <span class="footer__logo-name">Detailing Experts</span>
         </a>
