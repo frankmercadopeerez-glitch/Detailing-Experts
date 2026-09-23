@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import ImageKit from '@imagekit/nodejs';
 import {randomUUID} from 'node:crypto';
-import {Firestore,FieldValue} from '@google-cloud/firestore';
+import {Firestore} from '@google-cloud/firestore';
 import {z} from 'zod';
 import {id,requireAdmin,HttpError} from './domain.js';
 import {Actor,record} from './service.js';
@@ -18,7 +18,7 @@ export async function uploadPhoto(db:Firestore,actor:Actor,body:any){
  const job=await record(db,'jobs',data.jobId);const output=await compressImage(Buffer.from(data.base64,'base64'));const key=randomUUID();
  const usage=db.collection('_usage').doc('photos');const jobUsage=db.collection('_photoCounts').doc(data.jobId);const photo=db.collection('photos').doc(key);
  const budget=Number(process.env.PHOTO_STORAGE_BUDGET_BYTES||2000000000);
- await db.runTransaction(async tx=>{const u=await tx.get(usage);const j=await tx.get(jobUsage);if((u.data()?.bytes||0)+output.length>budget)throw new HttpError(409,'Se alcanzó el espacio reservado para fotos. Revisa el almacenamiento.');if((j.data()?.count||0)>=30)throw new HttpError(409,'Este trabajo alcanzó el límite de 30 fotos.');tx.set(usage,{bytes:FieldValue.increment(output.length)},{merge:true});tx.set(jobUsage,{count:FieldValue.increment(1)},{merge:true});tx.set(photo,{ownerId:job.ownerId,jobId:job.id,stage:data.stage,caption:data.caption,bytes:output.length,status:'uploading',createdAt:new Date().toISOString()});});
+ await db.runTransaction(async tx=>{const u=await tx.get(usage);const j=await tx.get(jobUsage);if((u.data()?.bytes||0)+output.length>budget)throw new HttpError(409,'Se alcanzó el espacio reservado para fotos. Revisa el almacenamiento.');if((j.data()?.count||0)>=30)throw new HttpError(409,'Este trabajo alcanzó el límite de 30 fotos.');tx.set(usage,{bytes:(u.data()?.bytes||0)+output.length},{merge:true});tx.set(jobUsage,{count:(j.data()?.count||0)+1},{merge:true});tx.set(photo,{ownerId:job.ownerId,jobId:job.id,stage:data.stage,caption:data.caption,bytes:output.length,status:'uploading',createdAt:new Date().toISOString()});});
  let uploaded=false;
  try{
   const form=new FormData();form.set('file',new Blob([new Uint8Array(output)],{type:'image/webp'}),`${key}.webp`);form.set('fileName',`${key}.webp`);form.set('folder','/detailing-private');form.set('isPrivateFile','true');form.set('useUniqueFileName','false');
@@ -35,7 +35,7 @@ export async function uploadPhoto(db:Firestore,actor:Actor,body:any){
   throw e;
  }
 }
-export async function listPhotos(db:Firestore,job:Record<string,any>){
- const docs=await db.collection('photos').where('jobId','==',job.id).limit(30).get();const ready=docs.docs.filter(d=>d.data().status==='ready');if(!ready.length)return {items:[]};const client=imagekit();
- return {items:ready.map(d=>{const p=d.data();return {id:d.id,caption:p.caption,stage:p.stage,bytes:p.bytes,createdAt:p.createdAt,url:client.helper.buildSrc({urlEndpoint:process.env.IMAGEKIT_URL_ENDPOINT!,src:p.filePath,signed:true,expiresIn:300,transformation:[{width:1600,quality:80}]})};})};
+export async function listPhotos(db:Firestore,job:Record<string,any>,admin=false){
+ const docs=await db.collection('photos').where('jobId','==',job.id).limit(30).get();const ready=docs.docs.filter(d=>d.data().status==='ready'&&(admin||!d.data().archived));if(!ready.length)return {items:[]};const client=imagekit();
+ return {items:ready.map(d=>{const p=d.data();return {id:d.id,archived:!!p.archived,caption:p.caption,stage:p.stage,bytes:p.bytes,createdAt:p.createdAt,url:client.helper.buildSrc({urlEndpoint:process.env.IMAGEKIT_URL_ENDPOINT!,src:p.filePath,signed:true,expiresIn:300,transformation:[{width:1600,quality:80}]})};})};
 }

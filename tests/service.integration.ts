@@ -1,3 +1,5 @@
+import {readFileSync} from 'node:fs';
+import {uploadPhoto,listPhotos} from '../server/photos';
 import {test} from 'node:test';import assert from 'node:assert/strict';import {initializeApp,deleteApp} from 'firebase-admin/app';import {getFirestore} from 'firebase-admin/firestore';import {mutate,list,checkout} from '../server/service';
 test('flujo persistente, aislamiento de clientes, conflictos y cobros',async()=>{
  if(process.env.FIRESTORE_EMULATOR_HOST!=='127.0.0.1:8087')throw new Error('This test may only run in the local emulator.');
@@ -31,8 +33,25 @@ test('flujo persistente, aislamiento de clientes, conflictos y cobros',async()=>
  const replacement=await mutate(db,admin,'job',{data:jobData});
  const cancelled=(await db.collection('jobs').doc(job.id!).get()).data()!;
  await mutate(db,admin,'job',{id:job.id,version:cancelled.updatedAt,data:{...jobData,status:'cancelado',notes:'Cancelación confirmada'}});
- const reservation=await db.collection('_slots').doc(Buffer.from(new Date(jobData.appointmentAt).toISOString()).toString('base64url')).get();
- assert.equal(reservation.data()?.jobId,replacement.id);
+ await assert.rejects(()=>mutate(db,admin,'job',{data:{...jobData,appointmentAt:'2027-01-20T14:30:00Z'}}),'overlapping duration must reject');
+ await mutate(db,admin,'job',{data:{...jobData,appointmentAt:'2027-01-20T15:00:00Z'}});
+ await mutate(db,admin,'job',{data:{...jobData,bay:'puesto-2'}});
+ const activeVehicle=(await db.collection('vehicles').doc(vehicle.id!).get()).data()!;
+ await assert.rejects(()=>mutate(db,admin,'archive',{id:vehicle.id,collection:'vehicles',version:activeVehicle.updatedAt,archived:true}));
+ for(const action of ['customer-edit','archive','manual-payment','photo-edit'])await assert.rejects(()=>mutate(db,bob,action,{}));
+ await mutate(db,admin,'manual-payment',{id:invoice.id,method:'cash',reference:'REC-TEST-001',confirmed:true});
+ await assert.rejects(()=>mutate(db,admin,'manual-payment',{id:invoice.id,method:'cash',reference:'REC-TEST-001',confirmed:true}));
+ assert.equal((await db.collection('invoices').doc(invoice.id!).get()).data()?.status,'paid');
+ const exported:any=await mutate(db,bob,'export-data',{ownerId:'alice'});
+ assert.equal(exported.profile.email,bob.email);assert.equal(exported.invoices.length,0);
+ await db.collection('photos').doc('test-photo').set({ownerId:'alice',jobId:job.id,status:'ready',filePath:'/detailing-private/hidden.webp'});
+ await mutate(db,admin,'photo-edit',{id:'test-photo',caption:'Antes',stage:'antes',archived:true});
+ assert.equal((await db.collection('photos').doc('test-photo').get()).data()?.archived,true);
+ // Exercise the real quota transaction and ready record with a fake external upload only.
+ const originalFetch=globalThis.fetch;const oldKey=process.env.IMAGEKIT_PRIVATE_KEY,oldEndpoint=process.env.IMAGEKIT_URL_ENDPOINT;
+ process.env.IMAGEKIT_PRIVATE_KEY='private_test';process.env.IMAGEKIT_URL_ENDPOINT='https://ik.imagekit.io/test';
+ globalThis.fetch=async()=>new Response(JSON.stringify({fileId:'imagekit-test',filePath:'/detailing-private/test.webp'}),{status:200,headers:{'content-type':'application/json'}});
+ try{assert.equal((await listPhotos(db,{id:job.id},false)).items.length,0);assert.equal((await listPhotos(db,{id:job.id},true)).items.length,1);const uploaded=await uploadPhoto(db,admin,{jobId:job.id,caption:'Prueba',stage:'antes',base64:readFileSync('images/portal-care.webp').toString('base64')});assert.equal((await db.collection('photos').doc(uploaded.id).get()).data()?.status,'ready');assert.equal((await db.collection('_usage').doc('photos').get()).data()?.bytes,uploaded.bytes);assert.equal((await db.collection('_photoCounts').doc(job.id!).get()).data()?.count,1);}finally{globalThis.fetch=originalFetch;if(oldKey)process.env.IMAGEKIT_PRIVATE_KEY=oldKey;else delete process.env.IMAGEKIT_PRIVATE_KEY;if(oldEndpoint)process.env.IMAGEKIT_URL_ENDPOINT=oldEndpoint;else delete process.env.IMAGEKIT_URL_ENDPOINT;}
  await assert.rejects(()=>mutate(db,admin,'vehicle',{data:{ownerId:'bob',plate:'ABC123',brand:'Toyota',model:'Prado',year:2024}}));
  const contact=await mutate(db,admin,'customer-vehicle',{customer:{name:'Customer pending',phone:'+573001234567',email:'pending@example.test'},vehicle:{plate:'LINK123',brand:'Kia',model:'Rio',year:2023}});
  const linkedJob=await mutate(db,admin,'job',{data:{...jobData,ownerId:contact.customerId,vehicleId:contact.id,appointmentAt:''}});

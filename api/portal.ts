@@ -21,7 +21,7 @@ export default async function handler(req:IncomingMessage,res:ServerResponse){tr
  if(req.method==='GET'){
   if(action==='me'){const user=await db.collection('users').doc(actor.uid).get();return json(res,200,{...actor,profile:user.data()||null});}
   if(action==='list')return json(res,200,await list(db,actor,url.searchParams.get('collection')||'',url.searchParams.get('cursor')||undefined));
-  if(action==='photos'){const job=await record(db,'jobs',id.parse(url.searchParams.get('jobId')));assertOwner(actor,job.ownerId);const {listPhotos}=await import('../server/photos.js');return json(res,200,await listPhotos(db,job));}
+  if(action==='photos'){const job=await record(db,'jobs',id.parse(url.searchParams.get('jobId')));assertOwner(actor,job.ownerId);const {listPhotos}=await import('../server/photos.js');return json(res,200,await listPhotos(db,job,actor.admin));}
   throw new HttpError(400,'Acción inválida.');
  }
  await rateLimit(db,actor.uid,'write',30);const body=await readBody(req);

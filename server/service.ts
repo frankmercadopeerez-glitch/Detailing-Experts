@@ -1,4 +1,5 @@
-import {FieldValue,Firestore,Query} from '@google-cloud/firestore';
+import {operations} from './operations.js';
+import {Firestore,Query} from '@google-cloud/firestore';
 import {createHash,randomUUID} from 'node:crypto';
 import {z} from 'zod';
 import {assertOwner,requireAdmin,HttpError,id,vehicleSchema,customerVehicleSchema,jobSchema,invoiceSchema,requestSchema,registrationSchema,todayBogota,integrity} from './domain.js';
@@ -23,6 +24,7 @@ export async function list(db:Firestore,actor:Actor,collection:string,cursor?:st
 }
 export async function mutate(db:Firestore,actor:Actor,action:string,body:Row){
  const now=stamp();
+ if(['customer-edit','archive','manual-payment','photo-edit','export-data'].includes(action))return operations(db,actor,action,body);
  if(action==='profile'){
   const {consent,plate,name}=registrationSchema.parse(body);const ref=db.collection('users').doc(actor.uid);
   await db.runTransaction(async tx=>{const old=await tx.get(ref);tx.set(ref,{ownerId:actor.uid,name:name||actor.name,email:actor.email,phone:actor.phone||'',registrationPlate:plate,plateVerification:'pending',updatedAt:now,...(!old.exists?{createdAt:now,consent,consentVersion:'portal-2026-09',notifications:false}: {})},{merge:true});});return {ok:true};
@@ -39,7 +41,7 @@ export async function mutate(db:Firestore,actor:Actor,action:string,body:Row){
   const ref=db.collection('notifications').doc(id.parse(body.id));await db.runTransaction(async tx=>{const old=await tx.get(ref);if(!old.exists)throw new HttpError(404,'Aviso no encontrado.');assertOwner({...actor,admin:false},old.data()?.ownerId);tx.update(ref,{read:true});});return {ok:true};
  }
  if(action==='request'){
-  const data=requestSchema.parse(body);const vehicle=await record(db,'vehicles',data.vehicleId);assertOwner({...actor,admin:false},vehicle.ownerId);
+  const data=requestSchema.parse(body);const vehicle=await record(db,'vehicles',data.vehicleId);assertOwner({...actor,admin:false},vehicle.ownerId);if(vehicle.archived)throw new HttpError(409,'Este vehículo está archivado. Contacta al equipo.');
   if(data.preferredDate<todayBogota())throw new HttpError(400,'Elige una fecha futura.');
   const ref=db.collection('requests').doc();await db.runTransaction(async tx=>{const open=await tx.get(db.collection('requests').where('ownerId','==',actor.uid));const pending=open.docs.filter(d=>d.data().status==='pendiente');if(pending.length>=5)throw new HttpError(409,'Ya tienes solicitudes pendientes. Espera la respuesta del equipo.');if(pending.some(d=>d.data().vehicleId===data.vehicleId&&d.data().preferredDate===data.preferredDate))throw new HttpError(409,'Ya solicitaste una cita para este vehículo en esa fecha. Revisa Mis solicitudes.');tx.set(ref,{...data,ownerId:actor.uid,status:'pendiente',createdAt:now,updatedAt:now});});return {id:ref.id};
  }
@@ -85,27 +87,29 @@ export async function mutate(db:Firestore,actor:Actor,action:string,body:Row){
   return {id:vehicleRef.id,customerId:customerRef.id};
  }
  if(action==='vehicle'){
-  const data=vehicleSchema.parse(body.data);await record(db,'users',data.ownerId);
+  const data=vehicleSchema.parse(body.data);const owner=await record(db,'users',data.ownerId);if(owner.archived)throw new HttpError(409,'Reactiva al cliente antes de registrar vehículos.');
   const ref=db.collection('vehicles').doc(body.id?id.parse(body.id):randomUUID());
-  await db.runTransaction(async tx=>{const old=await tx.get(ref);const duplicates=await tx.get(db.collection('vehicles').where('plate','==',data.plate));if(duplicates.docs.some(d=>d.id!==ref.id))throw new HttpError(409,'Esta placa ya está registrada. Vincula su historial en Clientes.');if(old.exists&&(old.data()?.ownerId!==data.ownerId||old.data()?.updatedAt!==body.version))throw new HttpError(409,'El registro cambió o intentaste cambiar de propietario. Recarga antes de guardar.');const log=audit(db,actor,'vehicle.save',ref.id);tx.set(ref,{...data,createdAt:old.data()?.createdAt||now,updatedAt:now});tx.set(log.ref,log.data);});return {id:ref.id};
+  await db.runTransaction(async tx=>{const old=await tx.get(ref);const duplicates=await tx.get(db.collection('vehicles').where('plate','==',data.plate));if(duplicates.docs.some(d=>d.id!==ref.id))throw new HttpError(409,'Esta placa ya está registrada. Vincula su historial en Clientes.');if(old.exists&&(old.data()?.ownerId!==data.ownerId||old.data()?.updatedAt!==body.version))throw new HttpError(409,'El registro cambió o intentaste cambiar de propietario. Recarga antes de guardar.');const log=audit(db,actor,'vehicle.save',ref.id);tx.set(ref,{...old.data(),...data,createdAt:old.data()?.createdAt||now,updatedAt:now});tx.set(log.ref,log.data);});return {id:ref.id};
  }
  if(action==='job'){
-  const data=jobSchema.parse(body.data);const vehicle=await record(db,'vehicles',data.vehicleId);if(vehicle.ownerId!==data.ownerId)throw new HttpError(400,'El vehículo no pertenece a ese cliente.');
+  const data=jobSchema.parse(body.data);const vehicle=await record(db,'vehicles',data.vehicleId);if(vehicle.archived)throw new HttpError(409,'Reactiva el vehículo antes de registrar trabajos.');if(vehicle.ownerId!==data.ownerId)throw new HttpError(400,'El vehículo no pertenece a ese cliente.');
   const ref=db.collection('jobs').doc(body.id?id.parse(body.id):randomUUID());
-  // Appointment capacity: one confirmed appointment per exact start slot.
+  // Serialise overlapping reservations per UTC day; legacy jobs default to one hour and bay 1.
   const slot=data.appointmentAt?new Date(data.appointmentAt).toISOString():'';
   if(slot&&!slot.endsWith(':00.000Z'))throw new HttpError(400,'La cita debe tener precisión de minutos.');
   await db.runTransaction(async tx=>{
    const currentVehicle=await tx.get(db.collection('vehicles').doc(data.vehicleId));if(currentVehicle.data()?.ownerId!==data.ownerId)throw new HttpError(409,'El propietario cambió. Actualiza el portal antes de guardar.');
    const old=await tx.get(ref);if(old.exists&&(old.data()?.ownerId!==data.ownerId||old.data()?.vehicleId!==data.vehicleId||old.data()?.updatedAt!==body.version))throw new HttpError(409,'El trabajo cambió. Recarga y vuelve a intentarlo.');
-   const oldSlot=old.data()?.appointmentAt;const slotRef=slot?db.collection('_slots').doc(Buffer.from(slot).toString('base64url')):null;
-   const newSlot=slotRef?await tx.get(slotRef):null;
-   const oldSlotRef=oldSlot?db.collection('_slots').doc(Buffer.from(oldSlot).toString('base64url')):null;
-   const oldReservation=oldSlotRef?await tx.get(oldSlotRef):null;
-   if(data.status!=='cancelado'&&newSlot?.exists&&newSlot.data()?.jobId!==ref.id)throw new HttpError(409,'Ya hay una cita en ese horario. Elige otro.');
-   if(oldSlotRef&&(oldSlot!==slot||data.status==='cancelado')&&oldReservation?.data()?.jobId===ref.id)tx.delete(oldSlotRef);
-   if(slotRef&&data.status!=='cancelado')tx.set(slotRef,{jobId:ref.id,start:slot});
-   tx.set(ref,{...data,appointmentAt:slot,createdAt:old.data()?.createdAt||now,updatedAt:now});
+   const locks=[];
+   if(slot&&data.status!=='cancelado'){
+    const from=Date.parse(slot),to=from+data.durationMinutes*60000;
+    const dates=[slot.slice(0,10),new Date(to-1).toISOString().slice(0,10)];
+    for(const date of [...new Set(dates)]){const lock=db.collection('_schedule').doc(data.bay+'-'+date);await tx.get(lock);locks.push(lock);}
+    const nearby=await tx.get(db.collection('jobs').where('appointmentAt','>=',new Date(from-480*60000).toISOString()).where('appointmentAt','<',new Date(to).toISOString()));
+    if(nearby.docs.some(d=>{const j=d.data();return d.id!==ref.id&&j.status!=='cancelado'&&(j.bay||'puesto-1')===data.bay&&Date.parse(j.appointmentAt)+(j.durationMinutes||60)*60000>from;}))throw new HttpError(409,'La cita se solapa con otra reserva de ese puesto. Elige otro horario o puesto.');
+   }
+   for(const lock of locks)tx.set(lock,{updatedAt:now});
+   tx.set(ref,{...old.data(),...data,appointmentAt:slot,createdAt:old.data()?.createdAt||now,updatedAt:now});
    const log=audit(db,actor,'job.save',ref.id);tx.set(log.ref,log.data);
    const n=db.collection('notifications').doc();tx.set(n,{ownerId:data.ownerId,title:'Actualización de tu vehículo',body:`${data.service}: ${data.status.replaceAll('_',' ')}. Consulta los detalles del trabajo.`,jobId:ref.id,read:false,delivery:'pending',updatedAt:now});
   });return {id:ref.id};
